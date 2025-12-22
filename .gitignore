@@ -1,0 +1,27 @@
+# WordPress uploads folder
+wp-content/uploads/
+
+# WordPress cache and backup plugins
+wp-content/cache/
+wp-content/backups/
+wp-content/backup-db/
+wp-content/upgrade/
+
+# WordPress debug log
+wp-content/debug.log
+
+# Environment and config files
+.env
+.env.local
+wp-config-local.php
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

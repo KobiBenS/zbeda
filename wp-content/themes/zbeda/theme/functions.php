@@ -158,6 +158,12 @@ function zbeda_scripts() {
 	wp_enqueue_style( 'zbeda-style', get_stylesheet_uri(), array(), ZBEDA_VERSION );
 	wp_enqueue_script( 'zbeda-script', get_template_directory_uri() . '/js/script.min.js', array(), ZBEDA_VERSION, true );
 
+	// Enqueue Swiper for subsidiary single pages
+	if ( is_singular( 'subsidiary' ) ) {
+		wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0' );
+		wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true );
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
