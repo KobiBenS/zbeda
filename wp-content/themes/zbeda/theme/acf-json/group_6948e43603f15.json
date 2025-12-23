@@ -74,6 +74,33 @@
             "bidirectional_target": []
         },
         {
+            "key": "field_694a3809b6b17",
+            "label": "תחומי פעילות",
+            "name": "solutions",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "solution"
+            ],
+            "post_status": "",
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 1,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
             "key": "field_69490b8c8aded",
             "label": "תוכן ריבועים",
             "name": "",
@@ -247,5 +274,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1766394805
+    "modified": 1766471732
 }

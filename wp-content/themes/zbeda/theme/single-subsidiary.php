@@ -162,7 +162,7 @@ while ( have_posts() ) :
 			</div>
 
 			<!-- Desktop Grid -->
-			<div class="hidden md:block w-full py-12">
+			<div class="hidden md:block w-full pt-12">
 				<div class="grid md:grid-cols-2 more_info_grid">
 					<?php if ( is_rtl() ) : ?>
 						<!-- RTL Layout -->
@@ -343,6 +343,321 @@ while ( have_posts() ) :
 								prevEl: '.swiper-button-prev',
 							},
 						});
+					}
+				});
+			</script>
+		<?php endif; ?>
+
+		<!-- Brands Section -->
+		<?php
+		$brands = get_field( 'brands' );
+		if ( $brands ) :
+			?>
+			<div class="bg-gray-100 py-16">
+				<div>
+					<!-- Section Title -->
+					<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+						<?php esc_html_e( 'השותפים שלנו – המותגים שמניעים את הענף', 'zbeda' ); ?>
+					</h2>
+
+					<!-- First Row - Scrolls Right -->
+					<div class="brands-carousel-wrapper overflow-hidden mb-8">
+						<div class="swiper brands-swiper-1">
+							<div class="swiper-wrapper">
+								<?php foreach ( $brands as $brand_id ) : ?>
+									<?php
+									$brand_thumbnail = get_the_post_thumbnail_url( $brand_id, 'medium' );
+									if ( $brand_thumbnail ) :
+										?>
+										<div class="swiper-slide">
+											<a href="<?php echo esc_url( get_permalink( $brand_id ) ); ?>" class="block bg-white p-4 hover:shadow-lg transition-shadow duration-300 rounded-full">
+												<img
+													src="<?php echo esc_url( $brand_thumbnail ); ?>"
+													alt="<?php echo esc_attr( get_the_title( $brand_id ) ); ?>"
+													class="w-full h-18 object-contain"
+												>
+											</a>
+										</div>
+									<?php endif; ?>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+
+					<!-- Second Row - Scrolls Left -->
+					<div class="brands-carousel-wrapper overflow-hidden">
+						<div class="swiper brands-swiper-2">
+							<div class="swiper-wrapper">
+								<?php foreach ( $brands as $brand_id ) : ?>
+									<?php
+									$brand_thumbnail = get_the_post_thumbnail_url( $brand_id, 'medium' );
+									if ( $brand_thumbnail ) :
+										?>
+										<div class="swiper-slide">
+											<a href="<?php echo esc_url( get_permalink( $brand_id ) ); ?>" class="block bg-white rounded-full p-6 hover:shadow-lg transition-shadow duration-300">
+												<img
+													src="<?php echo esc_url( $brand_thumbnail ); ?>"
+													alt="<?php echo esc_attr( get_the_title( $brand_id ) ); ?>"
+													class="w-full h-18 object-contain"
+												>
+											</a>
+										</div>
+									<?php endif; ?>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Brands Carousel Script -->
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					if (typeof Swiper !== 'undefined') {
+						// First carousel - slides to the right
+						const brandsSwiper1 = new Swiper('.brands-swiper-1', {
+							slidesPerView: 2,
+							spaceBetween: 20,
+							loop: true,
+							speed: 5000,
+							allowTouchMove: true,
+							autoplay: {
+								delay: 1,
+								disableOnInteraction: false,
+								pauseOnMouseEnter: true,
+								reverseDirection: false,
+							},
+							breakpoints: {
+								640: {
+									slidesPerView: 3,
+									spaceBetween: 20,
+								},
+								768: {
+									slidesPerView: 4,
+									spaceBetween: 30,
+								},
+								1024: {
+									slidesPerView: 6,
+									spaceBetween: 30,
+								},
+							},
+						});
+
+						// Second carousel - slides to the left (reverse direction)
+						const brandsSwiper2 = new Swiper('.brands-swiper-2', {
+							slidesPerView: 2,
+							spaceBetween: 20,
+							loop: true,
+							speed: 5000,
+							allowTouchMove: true,
+							autoplay: {
+								delay: 1,
+								disableOnInteraction: false,
+								pauseOnMouseEnter: true,
+								reverseDirection: true,
+							},
+							breakpoints: {
+								640: {
+									slidesPerView: 3,
+									spaceBetween: 20,
+								},
+								768: {
+									slidesPerView: 4,
+									spaceBetween: 30,
+								},
+								1024: {
+									slidesPerView: 6,
+									spaceBetween: 30,
+								},
+							},
+						});
+					}
+				});
+			</script>
+		<?php endif; ?>
+
+		<!-- Solutions Section -->
+		<?php
+		// Get solutions from ACF field
+		$solutions_raw = get_field( 'solutions' );
+
+		// Normalize to array (handle single object, array of objects, or array of IDs)
+		$solutions = array();
+		if ( $solutions_raw ) {
+			if ( is_array( $solutions_raw ) ) {
+				$solutions = $solutions_raw;
+			} else {
+				$solutions = array( $solutions_raw );
+			}
+		}
+
+		// Filter out any empty values
+		$solutions = array_filter( $solutions );
+
+		if ( ! empty( $solutions ) ) :
+			$solutions_count = count( $solutions );
+			$needs_desktop_carousel = $solutions_count > 5;
+			$needs_mobile_carousel = $solutions_count > 1;
+			?>
+			<div class="bg-primary py-16">
+				<!-- Section Title -->
+				<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12 px-4" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+					<?php esc_html_e( 'תחומי פעילות', 'zbeda' ); ?>
+				</h2>
+
+				<!-- Desktop Carousel (full width) -->
+				<div class="hidden md:block relative">
+						<div class="swiper solutions-swiper-desktop">
+							<div class="swiper-wrapper">
+								<?php foreach ( $solutions as $solution ) :
+									$solution_id = is_object( $solution ) ? $solution->ID : $solution;
+									?>
+									<div class="swiper-slide">
+										<a href="<?php echo esc_url( get_permalink( $solution_id ) ); ?>" class="block group">
+											<div class="bg-secondary rounded-lg overflow-hidden">
+												<?php if ( has_post_thumbnail( $solution_id ) ) : ?>
+													<div class="aspect-square overflow-hidden">
+														<?php echo get_the_post_thumbnail( $solution_id, 'medium', array( 'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-300' ) ); ?>
+													</div>
+												<?php endif; ?>
+												<div class="p-4 text-center" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+													<h3 class="text-white font-bold mb-2"><?php echo esc_html( get_the_title( $solution_id ) ); ?></h3>
+													<span class="text-primary text-sm font-semibold">
+														<?php esc_html_e( 'למד עוד', 'zbeda' ); ?>
+													</span>
+												</div>
+											</div>
+										</a>
+									</div>
+								<?php endforeach; ?>
+							</div>
+							<!-- Navigation -->
+							<div class="swiper-button-prev solutions-prev"></div>
+							<div class="swiper-button-next solutions-next"></div>
+						</div>
+					</div>
+
+					<?php if ( $needs_mobile_carousel ) : ?>
+						<!-- Mobile Carousel (more than 1 item) -->
+						<div class="md:hidden relative">
+							<div class="swiper solutions-swiper-mobile">
+								<div class="swiper-wrapper">
+									<?php foreach ( $solutions as $solution ) :
+										$solution_id = is_object( $solution ) ? $solution->ID : $solution;
+										?>
+										<div class="swiper-slide">
+											<a href="<?php echo esc_url( get_permalink( $solution_id ) ); ?>" class="block group">
+												<div class="bg-secondary rounded-lg overflow-hidden">
+													<?php if ( has_post_thumbnail( $solution_id ) ) : ?>
+														<div class="aspect-square overflow-hidden">
+															<?php echo get_the_post_thumbnail( $solution_id, 'medium', array( 'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-300' ) ); ?>
+														</div>
+													<?php endif; ?>
+													<div class="p-4 text-center" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+														<h3 class="text-white font-bold mb-2"><?php echo esc_html( get_the_title( $solution_id ) ); ?></h3>
+														<span class="text-primary text-sm font-semibold">
+															<?php esc_html_e( 'למד עוד', 'zbeda' ); ?>
+														</span>
+													</div>
+												</div>
+											</a>
+										</div>
+									<?php endforeach; ?>
+								</div>
+								<!-- Navigation -->
+								<div class="swiper-button-prev solutions-mobile-prev"></div>
+								<div class="swiper-button-next solutions-mobile-next"></div>
+							</div>
+						</div>
+					<?php else : ?>
+						<!-- Mobile Single Item -->
+						<div class="md:hidden">
+							<?php foreach ( $solutions as $solution ) :
+								$solution_id = is_object( $solution ) ? $solution->ID : $solution;
+								?>
+								<a href="<?php echo esc_url( get_permalink( $solution_id ) ); ?>" class="block group">
+									<div class="bg-secondary rounded-lg overflow-hidden">
+										<?php if ( has_post_thumbnail( $solution_id ) ) : ?>
+											<div class="aspect-square overflow-hidden">
+												<?php echo get_the_post_thumbnail( $solution_id, 'medium', array( 'class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-300' ) ); ?>
+											</div>
+										<?php endif; ?>
+										<div class="p-4 text-center" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+											<h3 class="text-white font-bold mb-2"><?php echo esc_html( get_the_title( $solution_id ) ); ?></h3>
+											<span class="text-primary text-sm font-semibold">
+												<?php esc_html_e( 'למד עוד', 'zbeda' ); ?>
+											</span>
+										</div>
+									</div>
+								</a>
+							<?php endforeach; ?>
+						</div>
+					<?php endif; ?>
+			</div>
+
+			<!-- Solutions Carousel Styles -->
+			<style>
+				.solutions-swiper-desktop {
+					padding: 0 50px;
+				}
+				.solutions-swiper-desktop .swiper-wrapper {
+					justify-content: center;
+				}
+				.solutions-swiper-desktop .swiper-slide {
+					width: 320px !important;
+					height: auto;
+				}
+				.solutions-swiper-desktop .swiper-button-next,
+				.solutions-swiper-desktop .swiper-button-prev,
+				.solutions-swiper-mobile .swiper-button-next,
+				.solutions-swiper-mobile .swiper-button-prev {
+					color: var(--wp--preset--color--secondary);
+					width: 40px;
+					height: 40px;
+					background-color: white;
+					border-radius: 50%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+				}
+				.solutions-swiper-desktop .swiper-button-next:after,
+				.solutions-swiper-desktop .swiper-button-prev:after,
+				.solutions-swiper-mobile .swiper-button-next:after,
+				.solutions-swiper-mobile .swiper-button-prev:after {
+					font-size: 16px;
+				}
+			</style>
+
+			<!-- Solutions Carousel Script -->
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					if (typeof Swiper !== 'undefined') {
+						// Desktop carousel - all cards same size, centered
+						new Swiper('.solutions-swiper-desktop', {
+							slidesPerView: 'auto',
+							spaceBetween: 24,
+							centeredSlides: false,
+							loop: <?php echo $solutions_count > 5 ? 'true' : 'false'; ?>,
+							navigation: {
+								nextEl: '.solutions-next',
+								prevEl: '.solutions-prev',
+							},
+						});
+
+						<?php if ( $needs_mobile_carousel ) : ?>
+						// Mobile carousel
+						new Swiper('.solutions-swiper-mobile', {
+							slidesPerView: 1.5,
+							spaceBetween: 16,
+							centeredSlides: true,
+							loop: true,
+							navigation: {
+								nextEl: '.solutions-mobile-next',
+								prevEl: '.solutions-mobile-prev',
+							},
+						});
+						<?php endif; ?>
 					}
 				});
 			</script>
