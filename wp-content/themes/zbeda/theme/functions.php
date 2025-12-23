@@ -80,8 +80,11 @@ if ( ! function_exists( 'zbeda_setup' ) ) :
 		// This theme uses wp_nav_menu() in two locations.
 		register_nav_menus(
 			array(
-				'menu-1' => __( 'Primary', 'zbeda' ),
-				'menu-2' => __( 'Footer Menu', 'zbeda' ),
+				'menu-1'        => __( 'Primary', 'zbeda' ),
+				'menu-2'        => __( 'Footer Menu', 'zbeda' ),
+				'footer-menu-1' => __( 'Footer Column 1', 'zbeda' ),
+				'footer-menu-2' => __( 'Footer Column 2', 'zbeda' ),
+				'footer-menu-3' => __( 'Footer Column 3', 'zbeda' ),
 			)
 		);
 
