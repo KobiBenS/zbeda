@@ -80,8 +80,14 @@ while ( have_posts() ) :
 			<!-- Brand Content -->
 			<div class="container mx-auto px-4 pt-24 py-12">
 				<div class="flex flex-col md:flex-row gap-8 items-center">
-					<div class="<?php echo has_post_thumbnail() ? 'md:w-3/5' : 'w-full'; ?> prose prose-lg max-w-none" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-						<?php the_content(); ?>
+					<div class="<?php echo has_post_thumbnail() ? 'md:w-3/5' : 'w-full'; ?>" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+						<div class="prose prose-lg max-w-none">
+							<?php the_content(); ?>
+						</div>
+						<!-- Contact Button -->
+						<a href="#contact-section" class="inline-block mt-6 px-8 py-3 bg-primary text-secondary font-bold rounded-lg hover:bg-primary/90 transition-colors">
+							<?php esc_html_e( 'צור קשר', 'zbeda' ); ?>
+						</a>
 					</div>
 					<?php if ( has_post_thumbnail() ) : ?>
 						<div class="md:w-2/5 flex-shrink-0">
@@ -90,6 +96,9 @@ while ( have_posts() ) :
 					<?php endif; ?>
 				</div>
 			</div>
+
+			<!-- Contact Section -->
+			<?php get_template_part( 'template-parts/components/contact-section' ); ?>
 
 			<!-- Grid Section -->
 		<?php if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_right ) : ?>
@@ -162,7 +171,7 @@ while ( have_posts() ) :
 			</div>
 
 			<!-- Desktop Grid -->
-			<div class="hidden md:block w-full pt-12">
+			<div class="hidden md:block w-full">
 				<div class="grid md:grid-cols-2 more_info_grid">
 					<?php if ( is_rtl() ) : ?>
 						<!-- RTL Layout -->

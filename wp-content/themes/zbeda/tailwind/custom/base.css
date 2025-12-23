@@ -13,3 +13,7 @@ body {
 .more_info_grid h2 {
 	@apply max-w-64
 }
+
+.ff-btn-submit {
+	@apply bg-primary hover:text-white hover:bg-secondary
+}
