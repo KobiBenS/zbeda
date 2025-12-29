@@ -1,10 +1,10 @@
 {
-    "key": "group_6948e43603f15",
-    "title": "subsidiary fields",
+    "key": "group_home_page_fields",
+    "title": "Home Page Settings",
     "fields": [
         {
-            "key": "field_69490b5e6ecdd",
-            "label": "הגדרות חברה",
+            "key": "field_home_hero_tab",
+            "label": "Hero Section",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -21,14 +21,49 @@
             "selected": 0
         },
         {
-            "key": "field_6948e898172c6",
-            "label": "Logo",
-            "name": "logo",
+            "key": "field_home_hero_background_type",
+            "label": "Background Type",
+            "name": "hero_background_type",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "image": "Image",
+                "video": "Video"
+            },
+            "default_value": "image",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_home_hero_image",
+            "label": "Background Image",
+            "name": "hero_background_image",
             "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_home_hero_background_type",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -44,12 +79,41 @@
             "max_size": "",
             "mime_types": "",
             "allow_in_bindings": 0,
-            "preview_size": "medium"
+            "preview_size": "large"
         },
         {
-            "key": "field_694d989ccfaa9",
-            "label": "אימייל",
-            "name": "contact_us",
+            "key": "field_home_hero_video",
+            "label": "Background Video",
+            "name": "hero_background_video",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_home_hero_background_type",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4,mov,avi,wmv,webm",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_home_hero_headline",
+            "label": "Headline",
+            "name": "hero_headline",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -60,17 +124,38 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "main@zbeda.com",
+            "default_value": "",
             "maxlength": "",
-            "allow_in_bindings": 0,
             "placeholder": "",
             "prepend": "",
-            "append": ""
+            "append": "",
+            "allow_in_bindings": 0
         },
         {
-            "key": "field_694d98c30e95f",
-            "label": "טלפון",
-            "name": "contact_number",
+            "key": "field_home_hero_subheadline",
+            "label": "Subheadline",
+            "name": "hero_subheadline",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": "",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_home_hero_cta_text",
+            "label": "CTA Button Text",
+            "name": "hero_cta_text",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -81,19 +166,19 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "037610001",
+            "default_value": "",
             "maxlength": "",
-            "allow_in_bindings": 0,
             "placeholder": "",
             "prepend": "",
-            "append": ""
+            "append": "",
+            "allow_in_bindings": 0
         },
         {
-            "key": "field_69490acbcc5e7",
-            "label": "Brands",
-            "name": "brands",
+            "key": "field_home_hero_cta_link",
+            "label": "CTA Button Link",
+            "name": "hero_cta_link",
             "aria-label": "",
-            "type": "post_object",
+            "type": "url",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -102,49 +187,13 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "brand"
-            ],
-            "post_status": "",
-            "taxonomy": "",
-            "return_format": "id",
-            "multiple": 1,
-            "allow_null": 0,
-            "allow_in_bindings": 0,
-            "bidirectional": 0,
-            "ui": 1,
-            "bidirectional_target": []
+            "default_value": "",
+            "placeholder": "",
+            "allow_in_bindings": 0
         },
         {
-            "key": "field_694a3809b6b17",
-            "label": "תחומי פעילות",
-            "name": "solutions",
-            "aria-label": "",
-            "type": "post_object",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "solution"
-            ],
-            "post_status": "",
-            "taxonomy": "",
-            "return_format": "object",
-            "multiple": 1,
-            "allow_null": 0,
-            "allow_in_bindings": 0,
-            "bidirectional": 0,
-            "ui": 1,
-            "bidirectional_target": []
-        },
-        {
-            "key": "field_69490b8c8aded",
-            "label": "תוכן ריבועים",
+            "key": "field_home_grid_tab",
+            "label": "Grid Section",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -161,8 +210,8 @@
             "selected": 0
         },
         {
-            "key": "field_6948e436eec0f",
-            "label": "Grid top left",
+            "key": "field_home_grid_top_left",
+            "label": "Grid Top Left",
             "name": "grid_top_left",
             "aria-label": "",
             "type": "wysiwyg",
@@ -182,8 +231,8 @@
             "delay": 0
         },
         {
-            "key": "field_6948e49a4da98",
-            "label": "Grid top left image",
+            "key": "field_home_grid_top_left_image",
+            "label": "Grid Top Left Background Image",
             "name": "grid_top_left_image",
             "aria-label": "",
             "type": "image",
@@ -208,8 +257,8 @@
             "preview_size": "medium"
         },
         {
-            "key": "field_6948e45aeec10",
-            "label": "Grid top right",
+            "key": "field_home_grid_top_right",
+            "label": "Grid Top Right",
             "name": "grid_top_right",
             "aria-label": "",
             "type": "wysiwyg",
@@ -229,8 +278,8 @@
             "delay": 0
         },
         {
-            "key": "field_6948e47deec11",
-            "label": "Grid bottom left",
+            "key": "field_home_grid_bottom_left",
+            "label": "Grid Bottom Left",
             "name": "grid_bottom_left",
             "aria-label": "",
             "type": "wysiwyg",
@@ -250,8 +299,8 @@
             "delay": 0
         },
         {
-            "key": "field_6948e488eec12",
-            "label": "Grid bottom right",
+            "key": "field_home_grid_bottom_right",
+            "label": "Grid Bottom Right",
             "name": "grid_bottom_right",
             "aria-label": "",
             "type": "wysiwyg",
@@ -271,8 +320,8 @@
             "delay": 0
         },
         {
-            "key": "field_6948e4ac4da99",
-            "label": "Grid bottom right image",
+            "key": "field_home_grid_bottom_right_image",
+            "label": "Grid Bottom Right Background Image",
             "name": "grid_bottom_right_image",
             "aria-label": "",
             "type": "image",
@@ -300,9 +349,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "page_template",
                 "operator": "==",
-                "value": "subsidiary"
+                "value": "template-home.php"
             }
         ]
     ],
@@ -316,5 +365,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1766694618
+    "modified": 1234567890
 }

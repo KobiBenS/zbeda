@@ -3,6 +3,32 @@
     "title": "brand fields",
     "fields": [
         {
+            "key": "field_6949348ddaba01",
+            "label": "Main Image",
+            "name": "main_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
             "key": "field_6949348ddabac",
             "label": "Primary Color",
             "name": "primary_color",
@@ -47,6 +73,50 @@
             "show_color_wheel": 1,
             "custom_palette_source": "",
             "palette_colors": ""
+        },
+        {
+            "key": "field_694d98158aadb",
+            "label": "אימייל",
+            "name": "conteact_us",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "main@zbeda.com",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_694d983d1e547",
+            "label": "טלפון",
+            "name": "contact_number",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "037610001",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -68,5 +138,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1766405294
+    "modified": 1766692993
 }

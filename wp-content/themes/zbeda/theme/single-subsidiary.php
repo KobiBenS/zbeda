@@ -419,23 +419,40 @@ while ( have_posts() ) :
 				</div>
 			</div>
 
+			<!-- Brands Carousel Styles -->
+			<style>
+				.brands-swiper-1.centered .swiper-wrapper,
+				.brands-swiper-2.centered .swiper-wrapper {
+					justify-content: center;
+				}
+			</style>
+
 			<!-- Brands Carousel Script -->
 			<script>
 				document.addEventListener('DOMContentLoaded', function() {
 					if (typeof Swiper !== 'undefined') {
+						const subsidiaryBrandsCount = <?php echo count( $brands ); ?>;
+						const swiperEl1 = document.querySelector('.brands-swiper-1');
+						const swiperEl2 = document.querySelector('.brands-swiper-2');
+
+						if (subsidiaryBrandsCount <= 6) {
+							swiperEl1.classList.add('centered');
+							swiperEl2.classList.add('centered');
+						}
+
 						// First carousel - slides to the right
 						const brandsSwiper1 = new Swiper('.brands-swiper-1', {
 							slidesPerView: 2,
 							spaceBetween: 20,
-							loop: true,
-							speed: 5000,
+							loop: subsidiaryBrandsCount > 6,
+							speed: subsidiaryBrandsCount > 6 ? 5000 : 0,
 							allowTouchMove: true,
-							autoplay: {
+							autoplay: subsidiaryBrandsCount > 6 ? {
 								delay: 1,
 								disableOnInteraction: false,
 								pauseOnMouseEnter: true,
 								reverseDirection: false,
-							},
+							} : false,
 							breakpoints: {
 								640: {
 									slidesPerView: 3,
@@ -456,15 +473,15 @@ while ( have_posts() ) :
 						const brandsSwiper2 = new Swiper('.brands-swiper-2', {
 							slidesPerView: 2,
 							spaceBetween: 20,
-							loop: true,
-							speed: 5000,
+							loop: subsidiaryBrandsCount > 6,
+							speed: subsidiaryBrandsCount > 6 ? 5000 : 0,
 							allowTouchMove: true,
-							autoplay: {
+							autoplay: subsidiaryBrandsCount > 6 ? {
 								delay: 1,
 								disableOnInteraction: false,
 								pauseOnMouseEnter: true,
 								reverseDirection: true,
-							},
+							} : false,
 							breakpoints: {
 								640: {
 									slidesPerView: 3,
@@ -642,12 +659,13 @@ while ( have_posts() ) :
 			<script>
 				document.addEventListener('DOMContentLoaded', function() {
 					if (typeof Swiper !== 'undefined') {
-						// Desktop carousel - all cards same size, centered
+						const solutionsCount = <?php echo $solutions_count; ?>;
+
+						// Desktop carousel - all cards same size, centered when few items
 						new Swiper('.solutions-swiper-desktop', {
 							slidesPerView: 'auto',
 							spaceBetween: 24,
-							centeredSlides: false,
-							loop: <?php echo $solutions_count > 5 ? 'true' : 'false'; ?>,
+							loop: solutionsCount > 5,
 							navigation: {
 								nextEl: '.solutions-next',
 								prevEl: '.solutions-prev',

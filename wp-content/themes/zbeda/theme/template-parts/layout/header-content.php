@@ -44,8 +44,6 @@
 						'menu_id'        => 'primary-menu',
 						'container'      => false,
 						'items_wrap'     => '<ul id="%1$s" class="%2$s flex items-center gap-6">%3$s</ul>',
-						'link_before'    => '<span class="text-white hover:text-amber-400 transition-colors text-sm">',
-						'link_after'     => '</span>',
 						'fallback_cb'    => false,
 					)
 				);
@@ -76,8 +74,6 @@
 					'menu_id'        => 'mobile-primary-menu',
 					'container'      => false,
 					'items_wrap'     => '<ul id="%1$s" class="%2$s flex flex-col gap-2">%3$s</ul>',
-					'link_before'    => '<span class="text-white hover:text-amber-400 transition-colors text-sm block py-2">',
-					'link_after'     => '</span>',
 					'fallback_cb'    => false,
 				)
 			);
@@ -86,3 +82,169 @@
 
 	</div>
 </header><!-- #masthead -->
+
+<style>
+/* Desktop Dropdown Styles */
+#primary-menu {
+	position: relative;
+}
+
+#primary-menu > li {
+	position: relative;
+}
+
+#primary-menu > li > a {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	color: white;
+	font-size: 0.875rem;
+	transition: color 0.2s;
+	padding: 0.5rem 0;
+}
+
+#primary-menu > li > a:hover {
+	color: #fbbf24;
+}
+
+/* Dropdown arrow for parent items */
+#primary-menu > li.menu-item-has-children > a::after {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid currentColor;
+	margin-<?php echo is_rtl() ? 'right' : 'left'; ?>: 0.25rem;
+}
+
+/* Submenu styles */
+#primary-menu .sub-menu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	<?php echo is_rtl() ? 'right' : 'left'; ?>: 0;
+	background-color: #1f2937;
+	min-width: 200px;
+	border-radius: 0.375rem;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+	padding: 0.5rem 0;
+	z-index: 50;
+	margin-top: 0.25rem;
+}
+
+#primary-menu li:hover > .sub-menu {
+	display: block;
+}
+
+#primary-menu .sub-menu li {
+	width: 100%;
+}
+
+#primary-menu .sub-menu a {
+	display: block;
+	padding: 0.5rem 1rem;
+	color: white;
+	font-size: 0.875rem;
+	transition: all 0.2s;
+	text-align: <?php echo is_rtl() ? 'right' : 'left'; ?>;
+}
+
+#primary-menu .sub-menu a:hover {
+	background-color: #374151;
+	color: #fbbf24;
+}
+
+/* Mobile Menu Styles */
+#mobile-primary-menu li {
+	width: 100%;
+}
+
+#mobile-primary-menu > li > a {
+	display: block;
+	color: white;
+	font-size: 0.875rem;
+	padding: 0.5rem 0;
+	transition: color 0.2s;
+}
+
+#mobile-primary-menu > li > a:hover {
+	color: #fbbf24;
+}
+
+#mobile-primary-menu .sub-menu {
+	display: none;
+	padding-<?php echo is_rtl() ? 'right' : 'left'; ?>: 1rem;
+	margin-top: 0.5rem;
+}
+
+#mobile-primary-menu .menu-item-has-children.open > .sub-menu {
+	display: block;
+}
+
+#mobile-primary-menu .sub-menu a {
+	display: block;
+	color: #d1d5db;
+	font-size: 0.8125rem;
+	padding: 0.375rem 0;
+	transition: color 0.2s;
+}
+
+#mobile-primary-menu .sub-menu a:hover {
+	color: #fbbf24;
+}
+
+/* Mobile dropdown toggle button */
+#mobile-primary-menu .menu-item-has-children > a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#mobile-primary-menu .menu-item-has-children > a::after {
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid currentColor;
+	transition: transform 0.2s;
+}
+
+#mobile-primary-menu .menu-item-has-children.open > a::after {
+	transform: rotate(180deg);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	// Mobile menu toggle
+	const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+
+	if (mobileMenuToggle && mobileMenu) {
+		mobileMenuToggle.addEventListener('click', function() {
+			const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+			mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+			mobileMenu.classList.toggle('hidden');
+		});
+	}
+
+	// Mobile submenu toggle
+	const mobileMenuItems = document.querySelectorAll('#mobile-primary-menu .menu-item-has-children');
+	mobileMenuItems.forEach(item => {
+		const link = item.querySelector('a');
+		if (link) {
+			link.addEventListener('click', function(e) {
+				// Only prevent default if clicking on parent item (not actual navigation)
+				if (item.querySelector('.sub-menu')) {
+					e.preventDefault();
+					item.classList.toggle('open');
+				}
+			});
+		}
+	});
+});
+</script>
