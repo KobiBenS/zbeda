@@ -56,10 +56,6 @@ while ( have_posts() ) :
 						<div class="prose prose-lg max-w-none">
 							<?php the_content(); ?>
 						</div>
-						<!-- Contact Button -->
-						<a href="#contact-section" class="inline-block mt-6 px-8 py-3 bg-primary text-secondary font-bold rounded-lg hover:bg-primary/90 transition-colors">
-							<?php esc_html_e( 'צור קשר', 'zbeda' ); ?>
-						</a>
 					</div>
 					<?php if ( has_post_thumbnail() ) : ?>
 						<div class="md:w-2/5 flex-shrink-0">
@@ -70,95 +66,19 @@ while ( have_posts() ) :
 			</div>
 
 			<!-- Brands Section -->
-			<?php
-			$brands = get_field( 'brands' );
-			if ( $brands ) :
-				?>
-				<div class="bg-gray-100 py-16">
-					<div>
-						<!-- Section Title -->
-						<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-							<?php esc_html_e( 'השותפים שלנו – המותגים שמניעים את הענף', 'zbeda' ); ?>
-						</h2>
-
-						<!-- Brands Row -->
-						<div class="brands-carousel-wrapper overflow-hidden">
-							<div class="swiper brands-swiper-solution">
-								<div class="swiper-wrapper">
-									<?php foreach ( $brands as $brand_id ) : ?>
-										<?php
-										$brand_thumbnail = get_the_post_thumbnail_url( $brand_id, 'medium' );
-										if ( $brand_thumbnail ) :
-											?>
-											<div class="swiper-slide">
-												<a href="<?php echo esc_url( get_permalink( $brand_id ) ); ?>" class="block bg-white p-4 hover:shadow-lg transition-shadow duration-300 rounded-full">
-													<img
-														src="<?php echo esc_url( $brand_thumbnail ); ?>"
-														alt="<?php echo esc_attr( get_the_title( $brand_id ) ); ?>"
-														class="w-full h-18 object-contain"
-													>
-												</a>
-											</div>
-										<?php endif; ?>
-									<?php endforeach; ?>
-								</div>
-							</div>
-						</div>
-					</div>
+			<!-- Section Title -->
+			<div class="bg-gray-100 py-16">
+				<div class="container mx-auto px-4">
+					<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+						<?php esc_html_e( 'השותפים שלנו – המותגים שמניעים את הענף', 'zbeda' ); ?>
+					</h2>
 				</div>
+				<?php get_template_part( 'template-parts/components/grid-brands' ); ?>
+			</div>
 
-				<!-- Brands Carousel Styles -->
-				<style>
-					.brands-swiper-solution.centered .swiper-wrapper {
-						justify-content: center;
-					}
-				</style>
+			
 
-				<!-- Brands Carousel Script -->
-				<script>
-					document.addEventListener('DOMContentLoaded', function() {
-						if (typeof Swiper !== 'undefined') {
-							const solutionBrandsCount = <?php echo count( $brands ); ?>;
-							const swiperEl = document.querySelector('.brands-swiper-solution');
 
-							if (solutionBrandsCount <= 6) {
-								swiperEl.classList.add('centered');
-							}
-
-							const brandsSwiperSolution = new Swiper('.brands-swiper-solution', {
-								slidesPerView: 2,
-								spaceBetween: 20,
-								loop: solutionBrandsCount > 6,
-								speed: solutionBrandsCount > 6 ? 5000 : 0,
-								allowTouchMove: true,
-								autoplay: solutionBrandsCount > 6 ? {
-									delay: 1,
-									disableOnInteraction: false,
-									pauseOnMouseEnter: true,
-									reverseDirection: false,
-								} : false,
-								breakpoints: {
-									640: {
-										slidesPerView: 3,
-										spaceBetween: 20,
-									},
-									768: {
-										slidesPerView: 4,
-										spaceBetween: 30,
-									},
-									1024: {
-										slidesPerView: 6,
-										spaceBetween: 30,
-									},
-								},
-							});
-						}
-					});
-				</script>
-			<?php endif; ?>
-
-			<!-- Contact Section -->
-			<?php get_template_part( 'template-parts/components/contact-section' ); ?>
 
 		</main><!-- #main -->
 	</section><!-- #primary -->

@@ -42,11 +42,6 @@
 }
 
 /**
- * Add your custom base styles.
- */
-@import "./tailwind/custom/base.css";
-
-/**
  * Add your custom component styles.
  *
  * As used below, `@import-glob` imports all CSS files from the
@@ -74,6 +69,12 @@
  */
 @import "tailwindcss/utilities";
 @import "./tailwind/custom/utilities.css";
+
+/**
+ * Add your custom base styles.
+ * This comes last so it can override all previous styles.
+ */
+@import "./tailwind/custom/base.css";
 
 /**
  * Add styles exclusively for the WordPress editor.

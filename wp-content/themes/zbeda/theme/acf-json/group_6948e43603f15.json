@@ -161,6 +161,27 @@
             "selected": 0
         },
         {
+            "key": "field_695cc28de0150",
+            "label": "Mobile Carousel",
+            "name": "grid_mobile_carousel",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_6948e436eec0f",
             "label": "Grid top left",
             "name": "grid_top_left",
@@ -316,5 +337,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1766694618
+    "modified": 1767686923
 }

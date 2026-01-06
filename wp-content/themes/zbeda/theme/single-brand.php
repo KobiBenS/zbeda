@@ -114,10 +114,6 @@ while ( have_posts() ) :
 						<div class="prose prose-lg max-w-none">
 							<?php the_content(); ?>
 						</div>
-						<!-- Contact Button -->
-						<a href="#contact-section" class="inline-block mt-6 px-8 py-3 <?php echo $primary_color ? 'brand-custom-primary' : 'bg-primary'; ?> <?php echo $primary_color ? 'text-on-bg' : 'text-secondary'; ?> font-bold rounded-lg hover:opacity-90 transition-opacity">
-							<?php esc_html_e( 'צור קשר', 'zbeda' ); ?>
-						</a>
 					</div>
 					<?php if ( $main_image_url ) : ?>
 						<div class="md:w-2/5 flex-shrink-0">
@@ -131,17 +127,218 @@ while ( have_posts() ) :
 				</div>
 			</div>
 
-			<!-- Contact Section -->
+			<!-- Brand Gallery Section -->
 			<?php
-			get_template_part(
-				'template-parts/components/contact-section',
-				null,
-				array(
-					'primary_color'   => $primary_color,
-					'secondary_color' => $secondary_color,
-				)
-			);
-			?>
+			$brand_gallery = get_field( 'brand_gallery' );
+			if ( $brand_gallery && is_array( $brand_gallery ) && ! empty( $brand_gallery ) ) :
+				?>
+				<div class="bg-primary py-16">
+					<div class="">
+						<!-- Section Title
+						<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12 px-4" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+							<?php esc_html_e( 'גלריית תמונות', 'zbeda' ); ?>
+						</h2> -->
+
+						<!-- Gallery Carousel -->
+						<div class="relative">
+							<div class="swiper brand-gallery-swiper">
+								<div class="swiper-wrapper">
+									<?php foreach ( $brand_gallery as $image ) :
+										$image_url = is_array( $image ) ? $image['url'] : $image;
+										$image_full = is_array( $image ) ? ( $image['sizes']['large'] ?? $image['url'] ) : $image;
+										$image_alt = is_array( $image ) ? ( $image['alt'] ?? '' ) : '';
+										?>
+										<div class="swiper-slide">
+											<a href="<?php echo esc_url( $image_full ); ?>" class="glightbox" data-gallery="brand-gallery">
+												<img
+													src="<?php echo esc_url( $image_url ); ?>"
+													alt="<?php echo esc_attr( $image_alt ); ?>"
+													class="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+												>
+											</a>
+										</div>
+									<?php endforeach; ?>
+								</div>
+								<!-- Navigation -->
+								<div class="swiper-button-prev brand-gallery-prev"></div>
+								<div class="swiper-button-next brand-gallery-next"></div>
+								<!-- Pagination -->
+								<div class="swiper-pagination brand-gallery-pagination"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Gallery Styles -->
+				<style>
+					.brand-gallery-swiper .swiper-slide {
+						height: auto;
+						padding-bottom: 60px;
+					}
+					.brand-gallery-swiper .swiper-slide img {
+						width: 100%;
+						aspect-ratio: 1 / 1;
+						object-fit: contain;
+					}
+					.brand-gallery-swiper .swiper-button-next,
+					.brand-gallery-swiper .swiper-button-prev {
+						color: var(--wp--preset--color--primary);
+						width: 40px;
+						height: 40px;
+						background-color: var(--wp--preset--color--secondary);
+						border-radius: 50%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+					}
+					.brand-gallery-swiper .swiper-button-next:after,
+					.brand-gallery-swiper .swiper-button-prev:after {
+						font-size: 16px;
+					}
+					.brand-gallery-swiper .swiper-pagination-bullet {
+						background: var(--wp--preset--color--secondary);
+						width: 8px;
+						height: 8px;
+						opacity: 0.5;
+					}
+					.brand-gallery-swiper .swiper-pagination-bullet-active {
+						opacity: 1;
+						width: 24px;
+						border-radius: 4px;
+					}
+					.brand-gallery-swiper.no-carousel .swiper-button-prev,
+					.brand-gallery-swiper.no-carousel .swiper-button-next,
+					.brand-gallery-swiper.no-carousel .swiper-pagination {
+						display: none !important;
+					}
+					.brand-gallery-swiper.no-carousel .swiper-wrapper {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						flex-wrap: wrap;
+						gap: 20px;
+					}
+					@media (min-width: 768px) {
+						.brand-gallery-swiper.no-carousel .swiper-wrapper {
+							gap: 30px;
+						}
+					}
+					.brand-gallery-swiper.no-carousel .swiper-slide {
+						width: calc((100% - (4 * 30px)) / 5) !important;
+						margin: 0 !important;
+						flex-shrink: 0;
+					}
+					@media (max-width: 1279px) {
+						.brand-gallery-swiper.no-carousel .swiper-slide {
+							width: calc((100% - (3 * 30px)) / 4) !important;
+						}
+					}
+					@media (max-width: 1023px) {
+						.brand-gallery-swiper.no-carousel .swiper-slide {
+							width: calc((100% - (2 * 30px)) / 3) !important;
+						}
+					}
+					@media (max-width: 767px) {
+						.brand-gallery-swiper.no-carousel .swiper-wrapper {
+							gap: 20px;
+						}
+						.brand-gallery-swiper.no-carousel .swiper-slide {
+							width: calc((100% - (0.3 * 20px)) / 1.3) !important;
+						}
+					}
+				</style>
+
+				<!-- Gallery Script -->
+				<script>
+					document.addEventListener('DOMContentLoaded', function() {
+						if (typeof Swiper !== 'undefined') {
+							const slideCount = <?php echo count( $brand_gallery ); ?>;
+							const swiperEl = document.querySelector('.brand-gallery-swiper');
+							let gallerySwiper = null;
+							
+							function getSlidesPerView() {
+								if (window.innerWidth >= 1280) return 5;
+								if (window.innerWidth >= 1024) return 4;
+								if (window.innerWidth >= 768) return 3;
+								return 1.3;
+							}
+							
+							function initCarousel() {
+								if (gallerySwiper) {
+									gallerySwiper.destroy(true, true);
+									gallerySwiper = null;
+								}
+								
+								const slidesPerView = getSlidesPerView();
+								
+								if (slideCount > slidesPerView) {
+									swiperEl.classList.remove('no-carousel');
+									gallerySwiper = new Swiper('.brand-gallery-swiper', {
+										slidesPerView: 1.3,
+										centeredSlides: true,
+										spaceBetween: 20,
+										autoHeight: true,
+										slidesOffsetBefore: 0,
+										slidesOffsetAfter: 0,
+										loop: <?php echo count( $brand_gallery ) > 1 ? 'true' : 'false'; ?>,
+										keyboard: {
+											enabled: true,
+										},
+										pagination: {
+											el: '.brand-gallery-pagination',
+											clickable: true,
+										},
+										navigation: {
+											nextEl: '.brand-gallery-next',
+											prevEl: '.brand-gallery-prev',
+										},
+										breakpoints: {
+											768: {
+												slidesPerView: 3,
+												spaceBetween: 30,
+												slidesOffsetBefore: 0,
+												slidesOffsetAfter: 0,
+											},
+											1024: {
+												slidesPerView: 4,
+												spaceBetween: 30,
+												slidesOffsetBefore: 0,
+												slidesOffsetAfter: 0,
+											},
+											1280: {
+												slidesPerView: 5,
+												spaceBetween: 30,
+												slidesOffsetBefore: 0,
+												slidesOffsetAfter: 0,
+											},
+										},
+									});
+								} else {
+									swiperEl.classList.add('no-carousel');
+								}
+							}
+							
+							initCarousel();
+							
+							let resizeTimer;
+							window.addEventListener('resize', function() {
+								clearTimeout(resizeTimer);
+								resizeTimer = setTimeout(function() {
+									initCarousel();
+								}, 250);
+							});
+						}
+						
+						if (typeof GLightbox !== 'undefined') {
+							const lightbox = GLightbox({
+								selector: '.glightbox',
+								loop: true,
+							});
+						}
+					});
+				</script>
+			<?php endif; ?>
 
 		</main><!-- #main -->
 	</section><!-- #primary -->

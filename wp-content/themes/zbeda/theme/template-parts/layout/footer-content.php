@@ -158,6 +158,7 @@
 	}
 	#colophon .footer-menu-list li {
 		margin-bottom: 0.75rem;
+		font-size: 1.1rem;
 	}
 	#colophon .footer-menu-list li a {
 		color: #d1d5db;
@@ -169,7 +170,7 @@
 	}
 	/* Custom logo sizing */
 	#colophon .custom-logo {
-		max-height: 60px;
+		max-height: 120px;
 		width: auto;
 	}
 </style>

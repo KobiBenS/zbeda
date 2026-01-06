@@ -1,0 +1,462 @@
+# Zbeda Theme Development Rules
+
+## CRITICAL: Always Update This File
+
+**EVERY TIME** you make ANY change, modification, or addition to this theme, you MUST immediately update this `.cursorrules` file to document the changes. This includes:
+
+- Code modifications
+- Bug fixes
+- Feature additions
+- Architectural changes
+- New components
+- Template changes
+- CSS/JavaScript changes
+- Any other modifications
+
+This file serves as the complete project documentation and must always reflect the current state of the system.
+
+---
+
+## Grid Section Component
+
+### Location
+
+`theme/template-parts/components/grid-section.php`
+
+### Purpose
+
+Reusable component that displays a 2x2 grid layout on desktop and a Swiper carousel on mobile devices. Used globally across the theme.
+
+### Usage
+
+```php
+<?php get_template_part( 'template-parts/components/grid-section' ); ?>
+```
+
+### Where It's Used
+
+- `template-home.php` - Home page template
+- `single-subsidiary.php` - Single subsidiary post template
+
+### Required ACF Fields
+
+The component requires the following ACF fields to be set up:
+
+- `grid_top_left` (WYSIWYG/Text) - Content for top-left grid cell
+- `grid_top_left_image` (Image) - Background image for top-left cell
+- `grid_top_right` (WYSIWYG/Text) - Content for top-right grid cell
+- `grid_bottom_left` (WYSIWYG/Text) - Content for bottom-left grid cell
+- `grid_bottom_right` (WYSIWYG/Text) - Content for bottom-right grid cell
+- `grid_bottom_right_image` (Image) - Background image for bottom-right cell
+
+### Optional ACF Fields
+
+- `grid_mobile_carousel` (True/False/Checkbox) - Controls whether mobile carousel displays. Exists for both homepage and subsidiary post types. If checked (true), mobile carousel is shown. If unchecked (false) or field doesn't exist, mobile carousel is hidden and only desktop grid displays. Field key: `field_home_grid_mobile_carousel` (homepage) or `field_695cc28de0150` (subsidiary).
+
+### Behavior
+
+#### Desktop (md and above)
+
+- Displays as a 2x2 grid layout
+- Always visible on desktop (md breakpoint and above)
+- RTL Layout: Mixed colors (bg-white for top-right/bottom-left, bg-secondary for top-left/bottom-right)
+- LTR Layout: All cells use bg-secondary
+- Images appear as background overlays with 30% opacity on cells that have image fields
+
+#### Mobile (below md breakpoint)
+
+- **If `grid_mobile_carousel` checkbox is checked**:
+    - Mobile carousel displays (Swiper carousel with `md:hidden` class)
+    - Desktop grid is hidden on mobile (`hidden md:block`)
+    - Fixed height of 70vh for carousel
+    - Includes navigation arrows and pagination dots
+    - **Slide order**: Top Right → Top Left → Bottom Left → Bottom Right (same for RTL and LTR, matches mobile grid order)
+    - **Colors match desktop grid**:
+        - RTL: Top Right & Bottom Left = `bg-white text-secondary`, Top Left & Bottom Right = `bg-secondary text-white`
+        - LTR: All slides = `bg-secondary text-white`
+- **If checkbox is unchecked or doesn't exist**:
+    - Mobile carousel is hidden
+    - Desktop grid displays on mobile too (`block` class - visible on all screen sizes)
+    - **Mobile grid order**: Top Right → Top Left → Bottom Left → Bottom Right (using CSS order classes)
+    - Grid adapts to mobile screen size using flexbox column layout
+
+### Technical Details
+
+#### Swiper Configuration
+
+- Class name: `grid-section-swiper`
+- Direction: horizontal
+- Slides per view: 1
+- Keyboard navigation: enabled
+- Pagination: clickable dots
+- Navigation: prev/next arrows
+
+#### Styling
+
+- Swiper arrows: Dark color (#101828), 40px circle with amber background (#fbbf2480)
+- Pagination dots: Blue color (rgb(62, 93, 156)), 8px default, 24px active
+- Carousel slides: Colors match desktop grid (RTL mixed, LTR all secondary)
+- Grid cells: Mixed colors based on RTL/LTR and position
+- Mobile grid: Uses flexbox column with CSS order classes for proper ordering
+
+#### RTL/LTR Handling
+
+- **Carousel slide order**: Same for both RTL and LTR (Top Right → Top Left → Bottom Left → Bottom Right)
+- **Carousel colors**: RTL has mixed colors (white/secondary), LTR all secondary
+- **Grid cell order**: Changes based on `is_rtl()` function for desktop layout
+- **Mobile grid order**: Same for both RTL and LTR (Top Right → Top Left → Bottom Left → Bottom Right)
+- Text direction set with `dir="rtl"` attribute when needed
+
+### Important Notes
+
+- Component only renders if at least one grid field has content
+- Images are optional and only display if field has value
+- Primary heading styling (`[&_h2]:text-primary`) applied to cells with images
+- Component is self-contained with inline Swiper styles and scripts
+- All ACF fields are fetched within the component (no need to pass variables)
+- **Mobile carousel is conditional**: Only displays if `grid_mobile_carousel` field exists and is checked (true). Field exists for both homepage and subsidiary post types. Admin can control mobile carousel visibility via checkbox for both.
+- **Mobile grid order**: Uses CSS `order-*` classes (order-1 through order-4) to ensure consistent Top Right → Top Left → Bottom Left → Bottom Right order
+- **Carousel colors**: Match desktop grid colors exactly (RTL mixed, LTR all secondary)
+
+### Future Development
+
+- If modifying this component, update this section
+- If adding new features, document them here
+- If changing ACF fields, update the Required ACF Fields section
+- Always test on both mobile and desktop
+- Always test RTL and LTR layouts
+
+---
+
+## Subsidiaries Grid Component
+
+### Location
+
+`theme/template-parts/components/grid-subsidiaries.php`
+
+### Purpose
+
+Reusable component that displays a responsive grid of subsidiary post cards. Always shows all subsidiaries ordered by menu_order.
+
+### Usage
+
+```php
+<?php get_template_part( 'template-parts/components/grid-subsidiaries' ); ?>
+```
+
+### Where It's Used
+
+- `template-home.php` - Home page template (with section title)
+- `archive-subsidiary.php` - Subsidiary archive template
+
+### Behavior
+
+- **Query**: Always fetches all subsidiaries using custom WP_Query
+- **Order**: Ordered by `menu_order` ASC
+- **Post Type**: `subsidiary`
+- **Pagination**: None - always shows all posts
+
+### Grid Configuration
+
+- **Mobile**: 1 column (default, configurable via filter)
+- **Tablet**: 2 columns (default, configurable via filter)
+- **Desktop**: 4 columns (default, configurable via filter)
+- **Gap**: 8 (gap-8)
+
+### Customization Filters
+
+- `grid_subsidiaries_mobile_cols` - Change mobile columns (default: 1)
+- `grid_subsidiaries_tablet_cols` - Change tablet columns (default: 2)
+- `grid_subsidiaries_desktop_cols` - Change desktop columns (default: 4)
+
+### Styling
+
+- **Wrapper**: `bg-white` (no border, padding handled by parent template)
+- **Container**: `container mx-auto px-4`
+- **Card**: `bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300`
+- **Logo**: `aspect-[4/3] bg-gray-50` with hover scale effect
+- **Title**: `text-xl font-bold` with hover color transition
+- **Title/Excerpt Logic**: If excerpt exists and is not empty, shows excerpt in title position, otherwise shows title
+- **Content**: Shows trimmed content (20 words) below title/excerpt
+- **Read More**: `text-primary hover:text-secondary` with arrow icon
+
+### Empty State
+
+- Displays when no subsidiaries found
+- Message: "לא נמצאו חברות בקבוצה." (No subsidiaries found)
+- Same wrapper styling as grid section
+
+### Required ACF Fields
+
+- `logo` (Image) - Subsidiary logo displayed in card
+
+### Important Notes
+
+- Component is self-contained - no parameters needed
+- Always shows all subsidiaries (no pagination)
+- Title is left to parent template (component doesn't include title)
+- RTL/LTR support via `dir="rtl"` attribute
+- Uses `wp_reset_postdata()` after custom query
+
+---
+
+## Solutions Section (Single Subsidiary)
+
+### Location
+
+`theme/single-subsidiary.php` (lines ~110-148)
+
+### Purpose
+
+Displays a grid of solution posts associated with a subsidiary. Uses responsive grid layout (no carousel).
+
+### Behavior
+
+- **Data Source**: Gets solutions from ACF field `solutions` (can be single post object or array)
+- **Filtering**: Filters out empty values using `array_filter()`
+- **Display**: Only shows if solutions exist (`if ( ! empty( $solutions ) )`)
+- **Layout**: Responsive CSS Grid (no carousel)
+
+### Grid Configuration
+
+- **Mobile**: 1 column (`grid-cols-1`)
+- **Tablet** (md): 2 columns (`md:grid-cols-2`)
+- **Desktop** (lg): 3 columns (`lg:grid-cols-3`)
+- **Large Desktop** (xl): 4 columns (`xl:grid-cols-4`)
+- **Gap**: 8 units (`gap-8`)
+
+### Card Design
+
+- **Background**: `bg-primary`
+- **Image**: Square aspect ratio (`aspect-square`), hover scale effect
+- **Title**: `text-secondary font-bold mb-2 text-xl lg:text-2xl` (responsive sizing)
+- **Read More**: `text-secondary text-md font-semibold` with "למד עוד" text
+- **Padding**: `p-4` for content section
+- **Hover**: Image scales on hover (`group-hover:scale-105`)
+
+### Styling
+
+- **Wrapper**: `bg-white py-16`
+- **Container**: `container mx-auto px-4`
+- **Section Title**: `text-3xl md:text-4xl font-bold text-center text-secondary mb-12`
+- **Card**: `bg-primary rounded-lg overflow-hidden`
+
+### Required ACF Fields
+
+- `solutions` (Post Object or Relationship) - Can be single post object or array of solution posts
+
+### Important Notes
+
+- **No carousel**: Uses static grid layout (matching `archive-solution.php` design)
+- **Filtering**: Empty values are filtered out before display
+- **Conditional Display**: Section only renders if solutions exist
+- **RTL/LTR Support**: Text direction set with `dir="rtl"` attribute when needed
+- **Design Consistency**: Card design matches `archive-solution.php` exactly
+
+### Related Files
+
+- `archive-solution.php` - Solution archive page (same card design)
+
+---
+
+## Brands Grid Component
+
+### Location
+`theme/template-parts/components/grid-brands.php`
+
+### Purpose
+Reusable component that displays a responsive grid of brand logos. Uses GRID layout (no carousel).
+
+### Usage
+```php
+<?php get_template_part( 'template-parts/components/grid-brands' ); ?>
+```
+
+### Where It's Used
+- `template-home.php` - Home page template (with section title)
+- `single-subsidiary.php` - Single subsidiary post template (with section title)
+- `single-solution.php` - Single solution post template (with section title)
+
+### Data Source Logic
+- **First**: Tries to get brands from ACF field `brands` (for solution/subsidiary posts)
+- **Fallback**: If no ACF field, queries all brands using WP_Query (for homepage)
+- **Filtering**: Only displays brands that have thumbnails (`get_the_post_thumbnail_url()` check)
+
+### Grid Configuration
+- **Mobile**: 2 columns (`grid-cols-2`)
+- **Tablet** (md): 3 columns (`md:grid-cols-3`)
+- **Desktop** (lg): 4 columns (`lg:grid-cols-4`)
+- **Large Desktop** (xl): 6 columns (`xl:grid-cols-6`)
+- **Gap**: 4 units mobile (`gap-4`), 6 units tablet+ (`md:gap-6`)
+
+### Card Design
+- **Container**: `bg-white p-4` with `rounded-full`
+- **Aspect**: Square (`aspect-square`)
+- **Hover**: `hover:shadow-lg transition-shadow duration-300`
+- **Image**: `object-contain` to fit logo properly
+- **Link**: Wraps entire card, links to brand post
+
+### Styling
+- **Wrapper**: Left to parent template (includes `bg-gray-100 py-16` and title)
+- **Container**: `container mx-auto px-4` (in component)
+- **Title**: Left to parent template (component doesn't include title)
+
+### Important Notes
+- **No carousel**: Uses static CSS Grid layout
+- **Self-contained**: No parameters needed
+- **Data source handling**: Automatically detects ACF field or uses WP_Query
+- **Filtering**: Only shows brands with thumbnails
+- **RTL/LTR Support**: Text direction set with `dir="rtl"` attribute when needed
+- **No pagination**: Always shows all brands
+
+### Required ACF Fields (Optional)
+- `brands` (Post Object or Relationship) - Array of brand post IDs. Only used if field exists (for solution/subsidiary posts). Homepage doesn't need this field.
+
+---
+
+## Brand Gallery Section (Single Brand Page)
+
+### Location
+
+`theme/single-brand.php` (lines ~130-266)
+
+### Purpose
+
+Displays a Swiper carousel of brand gallery images with GLightbox integration. Automatically converts to a centered flexbox grid when there aren't enough images to require a carousel.
+
+### Usage
+
+Only appears on single brand post pages (`is_singular( 'brand' )`). Automatically displays if `brand_gallery` ACF field has images.
+
+### Required ACF Fields
+
+- `brand_gallery` (Gallery) - Array of image objects with `url`, `sizes`, and `alt` properties
+
+### Behavior
+
+#### Carousel Mode (When Enough Images)
+
+- **Initialization**: JavaScript checks if slide count > current breakpoint's `slidesPerView`
+- **If true**: Initializes Swiper carousel with navigation and pagination
+- **Centered Slides**: `centeredSlides: true` - centers active slide, shows partial slides on sides
+- **Responsive Breakpoints**:
+  - Mobile: `slidesPerView: 1.3`, `spaceBetween: 20`
+  - Tablet (768px): `slidesPerView: 3`, `spaceBetween: 30`
+  - Desktop (1024px): `slidesPerView: 4`, `spaceBetween: 30`
+  - Large (1280px): `slidesPerView: 5`, `spaceBetween: 30`
+- **Loop**: Enabled if more than 1 image
+- **Navigation**: Prev/Next arrows, pagination dots
+- **Lightbox**: GLightbox integration with `loop: true` for infinite navigation
+
+#### Grid Mode (When Not Enough Images)
+
+- **Detection**: JavaScript compares slide count vs current breakpoint's `slidesPerView`
+- **If slide count ≤ slidesPerView**: 
+  - Swiper is NOT initialized
+  - Adds `no-carousel` class to swiper element
+  - CSS converts to flexbox grid with centered items
+  - Navigation and pagination hidden via CSS
+  - Images maintain same size as carousel would show (responsive widths)
+  - Images centered horizontally
+
+### Technical Details
+
+#### Swiper Configuration
+
+- **Class**: `.brand-gallery-swiper`
+- **Centered Slides**: `centeredSlides: true`
+- **Auto Height**: `autoHeight: true`
+- **Keyboard Navigation**: Enabled
+- **Responsive**: Breakpoints match image sizing
+
+#### GLightbox Configuration
+
+- **Library**: GLightbox (enqueued in `functions.php` for brand pages only)
+- **Selector**: `.glightbox` class on gallery links
+- **Gallery**: `data-gallery="brand-gallery"` attribute groups images
+- **Loop**: `loop: true` - infinite navigation in lightbox
+- **Enqueued**: CSS and JS loaded only on `is_singular( 'brand' )` pages
+
+#### JavaScript Logic
+
+- **`getSlidesPerView()`**: Returns current breakpoint's slidesPerView value
+- **`initCarousel()`**: 
+  - Destroys existing Swiper instance if present
+  - Checks if slide count > slidesPerView
+  - Initializes Swiper if needed, adds `no-carousel` class if not
+- **Resize Handler**: Debounced (250ms) to re-check on window resize
+- **Dynamic**: Re-initializes carousel when breakpoint changes
+
+#### CSS Styling
+
+- **Carousel Mode**:
+  - Navigation buttons: 40px circle, primary/secondary colors
+  - Pagination: Secondary color bullets, 8px default, 24px active
+  - Slide images: Square aspect ratio (`aspect-ratio: 1 / 1`), `object-fit: contain`
+- **Grid Mode** (`.no-carousel`):
+  - Flexbox layout: `display: flex`, `justify-content: center`
+  - Responsive widths matching carousel breakpoints
+  - Gaps: 20px mobile, 30px tablet+
+  - Navigation/pagination hidden via CSS
+
+### Styling Details
+
+- **Wrapper**: `bg-primary py-16`
+- **Container**: Empty div (no padding, allows overflow)
+- **Slide Images**: Square (`aspect-ratio: 1 / 1`), `object-fit: contain`
+- **Hover**: `hover:opacity-90 transition-opacity` on images
+
+### Important Notes
+
+- **Conditional Carousel**: Carousel only initializes when needed (more images than slidesPerView)
+- **Responsive Detection**: Checks slide count vs current breakpoint on load and resize
+- **Lightbox Only**: GLightbox works in both carousel and grid modes
+- **No Custom CSS Padding**: Uses Swiper's built-in `centeredSlides` for centering
+- **Overflow**: Container allows overflow to show partial side slides
+- **Performance**: Swiper only initialized when necessary, destroyed when not needed
+
+### Related Files
+
+- `functions.php` - Enqueues Swiper and GLightbox assets for brand pages
+- `theme/template-parts/components/grid-brands.php` - Different component for brand logo grid
+
+---
+
+## CSS Architecture
+
+### Tailwind CSS Generation Order
+
+The CSS is generated in this order (from `tailwind.css`):
+
+1. File header
+2. Tailwind theme
+3. Custom theme variables
+4. Fonts
+5. Preflight styles
+6. Custom components
+7. Tailwind Typography
+8. Tailwind utilities
+9. Custom utilities
+10. **Custom base styles (base.css) - LOADS LAST**
+
+### Base CSS Location
+
+`tailwind/custom/base.css` - This file loads LAST and can override all previous styles.
+
+### Prose Font Size
+
+- Global prose font size: `1.125rem` (18px)
+- Set in `tailwind/custom/base.css`
+- Overrides Tailwind Typography default of `1rem`
+- Uses selector: `.prose { font-size: 1.125rem; }`
+
+---
+
+## Component Documentation Files
+
+Each major component should have a corresponding markdown file in `theme/template-parts/components/docs/` directory.
+
+---
+
+**Last Updated:** 2025-01-XX
+**Remember:** ALWAYS UPDATE THIS FILE WHEN MAKING CHANGES!

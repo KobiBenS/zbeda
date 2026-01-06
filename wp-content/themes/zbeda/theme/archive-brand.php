@@ -59,12 +59,12 @@ get_header();
 								$logo_url = get_field( 'logo' );
 								if ( $logo_url ) :
 									?>
-									<div class="relative overflow-hidden aspect-[4/3] bg-gray-50 flex items-center justify-center p-8">
-										<a href="<?php the_permalink(); ?>" class="block">
+									<div class="relative overflow-hidden bg-gray-50 flex items-center justify-center">
+										<a href="<?php the_permalink(); ?>" class="block h-100">
 											<img
 												src="<?php echo esc_url( $logo_url ); ?>"
 												alt="<?php echo esc_attr( get_the_title() ); ?>"
-												class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
+												class="max-w-full max-h-full h-100 object-cover object-center group-hover:scale-105 transition-transform duration-300"
 											>
 										</a>
 									</div>

@@ -9,11 +9,31 @@
 body {
 	@apply bg-background text-foreground font-sans;
 }
-
+/*
 .more_info_grid h2 {
-	@apply max-w-64
-}
+	@apply max-w-64;
+}*/
 
 .ff-btn-submit {
-	@apply bg-primary hover:text-white hover:bg-secondary
+	@apply bg-primary hover:bg-secondary hover:text-white;
+}
+b,
+strong {
+	font-weight: 700;
+}
+
+/**
+ * Global prose font size override.
+ * 18px = 1.125rem
+ */
+.prose {
+	font-size: 1.125rem;
+	line-height: 1.4;
+}
+:is(.prose :not(:where([class~="not-prose"], [class~="not-prose"] *))):where(
+	p
+) {
+	font-size: 1.125rem;
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
 }

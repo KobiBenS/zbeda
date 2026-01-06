@@ -210,6 +210,27 @@
             "selected": 0
         },
         {
+            "key": "field_home_grid_mobile_carousel",
+            "label": "Mobile Carousel",
+            "name": "grid_mobile_carousel",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_home_grid_top_left",
             "label": "Grid Top Left",
             "name": "grid_top_left",

@@ -44,7 +44,7 @@ get_header();
 
 			<!-- Solutions Grid -->
 			<div class="container mx-auto px-4 py-12">
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 					<?php
 					// Start the Loop.
 					while ( have_posts() ) :
@@ -52,8 +52,8 @@ get_header();
 						?>
 
 						<article id="post-<?php the_ID(); ?>" <?php post_class( 'group' ); ?>>
-							<a href="<?php the_permalink(); ?>" class="block">
-								<div class="bg-secondary rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+							<a href="<?php the_permalink(); ?>" class="block group">
+								<div class="bg-primary rounded-lg overflow-hidden">
 
 									<!-- Featured Image -->
 									<?php if ( has_post_thumbnail() ) : ?>
@@ -63,14 +63,14 @@ get_header();
 									<?php endif; ?>
 
 									<!-- Content -->
-									<div class="p-6 text-center" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+									<div class="p-4 text-center" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 										<!-- Title -->
-										<h2 class="text-xl font-bold text-white mb-2">
+										<h2 class="text-secondary font-bold mb-2 text-xl lg:text-2xl">
 											<?php the_title(); ?>
 										</h2>
 
 										<!-- Read More -->
-										<span class="text-primary text-sm font-semibold">
+										<span class="text-secondary text-md font-semibold">
 											<?php esc_html_e( 'למד עוד', 'zbeda' ); ?>
 										</span>
 									</div>

@@ -161,10 +161,16 @@ function zbeda_scripts() {
 	wp_enqueue_style( 'zbeda-style', get_stylesheet_uri(), array(), ZBEDA_VERSION );
 	wp_enqueue_script( 'zbeda-script', get_template_directory_uri() . '/js/script.min.js', array(), ZBEDA_VERSION, true );
 
-	// Enqueue Swiper for subsidiary, solution single pages, and home page template
-	if ( is_singular( 'subsidiary' ) || is_singular( 'solution' ) || is_page_template( 'template-home.php' ) ) {
+	// Enqueue Swiper for subsidiary, solution, brand single pages, and home page template
+	if ( is_singular( 'subsidiary' ) || is_singular( 'solution' ) || is_singular( 'brand' ) || is_page_template( 'template-home.php' ) ) {
 		wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0' );
 		wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true );
+	}
+	
+	// Enqueue GLightbox for brand gallery lightbox
+	if ( is_singular( 'brand' ) ) {
+		wp_enqueue_style( 'glightbox-css', 'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css', array(), '3.2.0' );
+		wp_enqueue_script( 'glightbox-js', 'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js', array(), '3.2.0', true );
 	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

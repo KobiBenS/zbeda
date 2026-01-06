@@ -11,7 +11,7 @@
 
 <header id="masthead" class="bg-gray-900 border-b-4 border-amber-400">
 	<div class="container mx-auto px-4">
-		<div class="flex items-center justify-start h-16 gap-4" dir="rtl">
+		<div class="flex items-center justify-start h-30 gap-4" dir="rtl">
 
 			<!-- Logo -->
 			<div class="flex items-center">
@@ -21,7 +21,7 @@
 					$logo = wp_get_attachment_image_src( $custom_logo_id, 'full' );
 					if ( $logo ) :
 						?>
-						<img src="<?php echo esc_url( $logo[0] ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="h-10 w-auto">
+						<img src="<?php echo esc_url( $logo[0] ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="h-20 w-auto">
 					<?php else : ?>
 						<span class="text-white text-xl font-bold"><?php bloginfo( 'name' ); ?></span>
 					<?php endif; ?>
@@ -29,7 +29,7 @@
 			</div>
 
 			<!-- Navigation -->
-			<nav id="site-navigation" class="hidden md:flex items-center gap-2" aria-label="<?php esc_attr_e( 'Main Navigation', 'zbeda' ); ?>">
+			<nav id="site-navigation" class="hidden md:flex items-center gap-6" aria-label="<?php esc_attr_e( 'Main Navigation', 'zbeda' ); ?>">
 				<!-- Home Icon -->
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="text-amber-400 hover:text-amber-300 transition-colors" aria-label="<?php esc_attr_e( 'Home', 'zbeda' ); ?>">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -43,7 +43,7 @@
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
 						'container'      => false,
-						'items_wrap'     => '<ul id="%1$s" class="%2$s flex items-center gap-6">%3$s</ul>',
+						'items_wrap'     => '<ul id="%1$s" class="%2$s flex items-center gap-6 text-xl">%3$s</ul>',
 						'fallback_cb'    => false,
 					)
 				);
@@ -98,7 +98,7 @@
 	align-items: center;
 	gap: 0.25rem;
 	color: white;
-	font-size: 0.875rem;
+	font-size: 1.1rem;
 	transition: color 0.2s;
 	padding: 0.5rem 0;
 }
@@ -146,7 +146,7 @@
 	display: block;
 	padding: 0.5rem 1rem;
 	color: white;
-	font-size: 0.875rem;
+	font-size: 1rem;
 	transition: all 0.2s;
 	text-align: <?php echo is_rtl() ? 'right' : 'left'; ?>;
 }

@@ -3,11 +3,11 @@
     "title": "brand fields",
     "fields": [
         {
-            "key": "field_6949348ddaba01",
-            "label": "Main Image",
-            "name": "main_image",
+            "key": "field_695d0c104d879",
+            "label": "מידע על המותג",
+            "name": "",
             "aria-label": "",
-            "type": "image",
+            "type": "tab",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,17 +16,9 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "url",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "allow_in_bindings": 0,
-            "preview_size": "medium"
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6949348ddabac",
@@ -117,6 +109,78 @@
             "step": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_695d0c224d87a",
+            "label": "מדיה",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_695d0d490a58f",
+            "label": "Main Image",
+            "name": "main_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_695d0c2b4d87b",
+            "label": "גלריית תמונות",
+            "name": "brand_gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min": "",
+            "max": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "insert": "append",
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -138,5 +202,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1766692993
+    "modified": 1767706029
 }
