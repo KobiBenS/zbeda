@@ -32,14 +32,14 @@
 					<p class="text-gray-400 mt-2"><?php echo esc_html( $description ); ?></p>
 				<?php endif; ?>
 				<!-- Contact Form -->
-				<div class="mt-4">
+				<div class="mt-8">
 					<?php echo do_shortcode( '[fluentform id="3"]' ); ?>
 				</div>
 			</div>
 
 			<!-- Column 2: Menu 1 -->
 			<div class="footer-col">
-				<h3 class="font-bold text-white mb-4"><?php esc_html_e( 'חברות הקבוצה', 'zbeda' ); ?></h3>
+				<h3 class="font-bold text-white mb-4 text-xl"><?php esc_html_e( 'חברות הקבוצה', 'zbeda' ); ?></h3>
 				<?php if ( has_nav_menu( 'footer-menu-1' ) ) : ?>
 					<nav aria-label="<?php esc_attr_e( 'חברות הקבוצה', 'zbeda' ); ?>">
 						<?php
@@ -58,7 +58,7 @@
 
 			<!-- Column 3: Menu 2 -->
 			<div class="footer-col">
-				<h3 class="font-bold text-white mb-4"><?php esc_html_e( 'תחומי פעילות', 'zbeda' ); ?></h3>
+				<h3 class="font-bold text-white mb-4 text-xl"><?php esc_html_e( 'תחומי פעילות', 'zbeda' ); ?></h3>
 				<?php if ( has_nav_menu( 'footer-menu-2' ) ) : ?>
 					<nav aria-label="<?php esc_attr_e( 'תחומי פעילות', 'zbeda' ); ?>">
 						<?php
@@ -77,7 +77,7 @@
 
 			<!-- Column 4: Menu 3 -->
 			<div class="footer-col">
-				<h3 class="font-bold text-white mb-4"><?php esc_html_e( 'מותגים', 'zbeda' ); ?></h3>
+				<h3 class="font-bold text-white mb-4 text-xl"><?php esc_html_e( 'מותגים', 'zbeda' ); ?></h3>
 				<?php if ( has_nav_menu( 'footer-menu-3' ) ) : ?>
 					<nav aria-label="<?php esc_attr_e( 'מותגים', 'zbeda' ); ?>">
 						<?php
