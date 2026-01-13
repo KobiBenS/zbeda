@@ -11,7 +11,7 @@
 
 <header id="masthead" class="bg-gray-900 border-b-4 border-amber-400">
 	<div class="container mx-auto px-4">
-		<div class="flex items-center justify-start h-30 gap-4" dir="rtl">
+		<div class="flex flex-row-reverse justify-between items-center h-30 md:flex-row md:justify-start md:gap-4" dir="rtl">
 
 			<!-- Logo -->
 			<div class="flex items-center">
@@ -21,7 +21,7 @@
 					$logo = wp_get_attachment_image_src( $custom_logo_id, 'full' );
 					if ( $logo ) :
 						?>
-						<img src="<?php echo esc_url( $logo[0] ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="h-20 w-auto">
+						<img src="<?php echo esc_url( $logo[0] ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="h-25 w-auto">
 					<?php else : ?>
 						<span class="text-white text-xl font-bold"><?php bloginfo( 'name' ); ?></span>
 					<?php endif; ?>
@@ -66,7 +66,7 @@
 		</div>
 
 		<!-- Mobile Menu -->
-		<nav id="mobile-menu" class="hidden md:hidden pb-4" dir="rtl">
+		<nav id="mobile-menu" class="hidden pb-4" dir="rtl">
 			<?php
 			wp_nav_menu(
 				array(
@@ -119,6 +119,18 @@
 	margin-<?php echo is_rtl() ? 'right' : 'left'; ?>: 0.25rem;
 }
 
+/* Bridge element to prevent gap - invisible hover area */
+#primary-menu > li.menu-item-has-children::before {
+	content: '';
+	position: absolute;
+	top: 100%;
+	<?php echo is_rtl() ? 'right' : 'left'; ?>: 0;
+	width: 100%;
+	height: 0.5rem;
+	background: transparent;
+	z-index: 51;
+}
+
 /* Submenu styles */
 #primary-menu .sub-menu {
 	display: none;
@@ -131,7 +143,8 @@
 	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 	padding: 0.5rem 0;
 	z-index: 50;
-	margin-top: 0.25rem;
+	margin-top: 0;
+	padding-top: 0.5rem;
 }
 
 #primary-menu li:hover > .sub-menu {
@@ -228,7 +241,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		mobileMenuToggle.addEventListener('click', function() {
 			const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
 			mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
-			mobileMenu.classList.toggle('hidden');
+			
+			// Toggle between hidden and block classes
+			if (mobileMenu.classList.contains('hidden')) {
+				mobileMenu.classList.remove('hidden');
+				mobileMenu.classList.add('block');
+			} else {
+				mobileMenu.classList.remove('block');
+				mobileMenu.classList.add('hidden');
+			}
 		});
 	}
 

@@ -59,6 +59,18 @@ get_header();
 			$section_2_content = get_field( 'section_2_content' );
 			$section_2_image   = get_field( 'section_2_image' );
 			$section_2_video   = get_field( 'section_2_video' );
+
+			// Get section 3 fields
+			$section_3_title   = get_field( 'section_3_title' );
+			$section_3_content = get_field( 'section_3_content' );
+			$section_3_image   = get_field( 'section_3_image' );
+			$section_3_video   = get_field( 'section_3_video' );
+
+			// Get section 4 fields
+			$section_4_title   = get_field( 'section_4_title' );
+			$section_4_content = get_field( 'section_4_content' );
+			$section_4_image   = get_field( 'section_4_image' );
+			$section_4_video   = get_field( 'section_4_video' );
 			?>
 
 			<!-- Section 1 - Media on Right -->
@@ -140,6 +152,94 @@ get_header();
 									<img
 										src="<?php echo esc_url( $section_2_image['url'] ); ?>"
 										alt="<?php echo esc_attr( $section_2_image['alt'] ?: $section_2_title ); ?>"
+										class="w-full h-auto rounded-lg shadow-lg"
+									>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+
+			<!-- Section 3 - Media on Right -->
+			<?php if ( $section_3_content || $section_3_image || $section_3_video ) : ?>
+				<div class="py-16">
+					<div class="container mx-auto px-4">
+						<div class="flex flex-col md:flex-row gap-8 items-center" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+							<!-- Content -->
+							<div class="md:w-1/2">
+								<?php if ( $section_3_title ) : ?>
+									<h2 class="text-3xl md:text-4xl font-bold text-secondary mb-2">
+										<?php echo esc_html( $section_3_title ); ?>
+									</h2>
+									<div class="w-24 h-1 bg-primary mb-6"></div>
+								<?php endif; ?>
+								<div class="prose prose-lg max-w-none">
+									<?php echo wp_kses_post( $section_3_content ); ?>
+								</div>
+							</div>
+
+							<!-- Media (Video or Image) -->
+							<div class="md:w-1/2">
+								<?php if ( $section_3_video ) : ?>
+									<video
+										class="w-full h-auto rounded-lg shadow-lg"
+										autoplay
+										muted
+										loop
+										playsinline
+									>
+										<source src="<?php echo esc_url( $section_3_video['url'] ); ?>" type="<?php echo esc_attr( $section_3_video['mime_type'] ); ?>">
+										<?php esc_html_e( 'הדפדפן שלך אינו תומך בתג וידאו.', 'zbeda' ); ?>
+									</video>
+								<?php elseif ( $section_3_image ) : ?>
+									<img
+										src="<?php echo esc_url( $section_3_image['url'] ); ?>"
+										alt="<?php echo esc_attr( $section_3_image['alt'] ?: $section_3_title ); ?>"
+										class="w-full h-auto rounded-lg shadow-lg"
+									>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+
+			<!-- Section 4 - Media on Left -->
+			<?php if ( $section_4_content || $section_4_image || $section_4_video ) : ?>
+				<div class="bg-white py-16">
+					<div class="container mx-auto px-4">
+						<div class="flex flex-col md:flex-row-reverse gap-8 items-center" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+							<!-- Content -->
+							<div class="md:w-1/2">
+								<?php if ( $section_4_title ) : ?>
+									<h2 class="text-3xl md:text-4xl font-bold text-secondary mb-2">
+										<?php echo esc_html( $section_4_title ); ?>
+									</h2>
+									<div class="w-24 h-1 bg-primary mb-6"></div>
+								<?php endif; ?>
+								<div class="prose prose-lg max-w-none">
+									<?php echo wp_kses_post( $section_4_content ); ?>
+								</div>
+							</div>
+
+							<!-- Media (Video or Image) -->
+							<div class="md:w-1/2">
+								<?php if ( $section_4_video ) : ?>
+									<video
+										class="w-full h-auto rounded-lg shadow-lg"
+										autoplay
+										muted
+										loop
+										playsinline
+									>
+										<source src="<?php echo esc_url( $section_4_video['url'] ); ?>" type="<?php echo esc_attr( $section_4_video['mime_type'] ); ?>">
+										<?php esc_html_e( 'הדפדפן שלך אינו תומך בתג וידאו.', 'zbeda' ); ?>
+									</video>
+								<?php elseif ( $section_4_image ) : ?>
+									<img
+										src="<?php echo esc_url( $section_4_image['url'] ); ?>"
+										alt="<?php echo esc_attr( $section_4_image['alt'] ?: $section_4_title ); ?>"
 										class="w-full h-auto rounded-lg shadow-lg"
 									>
 								<?php endif; ?>
