@@ -147,15 +147,35 @@ while ( have_posts() ) :
 			</div>
 		<?php endif; ?>
 		<!-- Brands Section -->
-		<!-- Section Title -->
-		<div class="bg-gray-100 py-16">
-			<div class="container mx-auto px-4">
-				<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-					<?php esc_html_e( 'השותפים שלנו – המותגים שמניעים את הענף', 'zbeda' ); ?>
-				</h2>
+		<?php
+		// Get brands from ACF field
+		$brands_raw = get_field( 'brands' );
+		
+		// Normalize to array (handle single object, array of objects, or array of IDs)
+		$brands = array();
+		if ( $brands_raw ) {
+			if ( is_array( $brands_raw ) ) {
+				$brands = $brands_raw;
+			} else {
+				$brands = array( $brands_raw );
+			}
+		}
+		
+		// Filter out any empty values
+		$brands = array_filter( $brands );
+		
+		if ( ! empty( $brands ) ) :
+			?>
+			<!-- Section Title -->
+			<div class="bg-gray-100 py-16">
+				<div class="container mx-auto px-4">
+					<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+						<?php esc_html_e( 'השותפים שלנו – המותגים שמניעים את הענף', 'zbeda' ); ?>
+					</h2>
+				</div>
+				<?php get_template_part( 'template-parts/components/grid-brands' ); ?>
 			</div>
-			<?php get_template_part( 'template-parts/components/grid-brands' ); ?>
-		</div>
+		<?php endif; ?>
 
 		
 			<!-- Contact Section -->
