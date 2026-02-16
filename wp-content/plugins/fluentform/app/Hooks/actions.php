@@ -376,6 +376,7 @@ $app->addAction('fluentform/loading_editor_assets', function ($form) {
         if (!isset($item['settings']['suffix_label'])) {
             $item['settings']['suffix_label'] = '';
         }
+      
         return $item;
     });
 

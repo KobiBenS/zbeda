@@ -91,7 +91,7 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 								<img
 									src="<?php echo esc_url( $slide['image'] ); ?>"
 									alt=""
-									class="absolute inset-0 w-full h-full object-cover opacity-30"
+									class="absolute inset-0 w-full h-full object-cover opacity-20"
 								>
 							<?php endif; ?>
 							<div class="relative z-10 max-w-2xl mx-auto">
@@ -138,7 +138,7 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 						<img
 							src="<?php echo esc_url( $grid_top_left_image ); ?>"
 							alt=""
-							class="absolute inset-0 w-full h-full object-cover opacity-30"
+							class="absolute inset-0 w-full h-full object-cover opacity-20"
 						>
 					<?php endif; ?>
 					<div class="relative z-10">
@@ -156,7 +156,7 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 						<img
 							src="<?php echo esc_url( $grid_bottom_right_image ); ?>"
 							alt=""
-							class="absolute inset-0 w-full h-full object-cover opacity-30"
+							class="absolute inset-0 w-full h-full object-cover opacity-20"
 						>
 					<?php endif; ?>
 					<div class="relative z-10">
@@ -198,7 +198,7 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 						<img
 							src="<?php echo esc_url( $grid_top_left_image ); ?>"
 							alt=""
-							class="absolute inset-0 w-full h-full object-cover opacity-30"
+							class="absolute inset-0 w-full h-full object-cover opacity-20"
 						>
 					<?php endif; ?>
 					<div class="relative z-10">
@@ -227,7 +227,7 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 						<img
 							src="<?php echo esc_url( $grid_bottom_right_image ); ?>"
 							alt=""
-							class="absolute inset-0 w-full h-full object-cover opacity-30"
+							class="absolute inset-0 w-full h-full object-cover opacity-20"
 						>
 					<?php endif; ?>
 					<div class="relative z-10">

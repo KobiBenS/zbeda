@@ -15,7 +15,7 @@ get_header();
 
 			<!-- Page Header -->
 			<div class="bg-primary border-b border-gray-200">
-				<div class="container mx-auto px-4 py-8">
+				<div class="container mx-auto px-4 py-3">
 					<div <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 						<!-- Breadcrumbs -->
 						<nav class="text-sm text-secondary mb-2" aria-label="Breadcrumb">
@@ -44,7 +44,7 @@ get_header();
 
 			<!-- Brands Grid -->
 			<div class="container mx-auto px-4 py-12">
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+				<div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 					<?php
 					// Start the Loop.
 					while ( have_posts() ) :
@@ -56,7 +56,7 @@ get_header();
 
 								<!-- Logo -->
 								<?php
-								$logo_url = get_field( 'main_image' ) ?: get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+								$logo_url =  get_the_post_thumbnail_url( get_the_ID(), 'medium' );
 								if ( $logo_url ) :
 									?>
 									<div class="relative overflow-hidden bg-gray-50 flex items-center justify-center aspect-[16/9]">
@@ -71,15 +71,16 @@ get_header();
 								<?php endif; ?>
 
 								<!-- Content -->
-								<div class="p-6">
+								<div class="p-2 md:p-6">
 									<!-- Title -->
-									<h2 class="text-2xl font-bold mb-3">
+									<h2 class="text-lg font-bold mb-0 min-h-[45px] leading-tight">
 										<a href="<?php the_permalink(); ?>" class="text-secondary hover:text-primary transition-colors">
 											<?php the_title(); ?>
 										</a>
 									</h2>
 
-									<!-- Excerpt -->
+									<!-- 
+									Excerpt 
 									<?php if ( has_excerpt() || get_the_content() ) : ?>
 										<div class="text-gray-600 mb-4 line-clamp-3 min-h-24">
 											<?php
@@ -90,7 +91,7 @@ get_header();
 											}
 											?>
 										</div>
-									<?php endif; ?>
+									<?php endif; ?>-->
 
 									<!-- Read More Link (WPML-ready) -->
 									<a

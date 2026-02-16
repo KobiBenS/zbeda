@@ -89,6 +89,42 @@
             "append": ""
         },
         {
+            "key": "field_694d98d0e95f",
+            "label": "קישור למפת Google (embed)",
+            "name": "map_embed",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "קישור להטמעת מפת Google Maps. אם ריק - יוצג מיקום ברירת מחדל.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_694d98d1e95f",
+            "label": "קישור לאתר החברה",
+            "name": "brand_website",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_69490acbcc5e7",
             "label": "Brands",
             "name": "brands",

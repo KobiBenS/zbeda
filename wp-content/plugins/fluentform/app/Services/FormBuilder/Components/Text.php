@@ -92,7 +92,7 @@ class Text extends BaseComponent
                     'fluentform/disable_input_mode',
                     'Use fluentform/disable_input_mode instead of fluentform_disable_inputmode'
                 );
-                if (! apply_filters('fluentform/disable_input_mode', $isDisable)) {
+                if (!apply_filters('fluentform/disable_input_mode', $isDisable)) {
                     $inputMode = apply_filters('fluentform/number_input_mode', ArrayHelper::get($data, 'attributes.inputmode'), $data, $form);
                     if (! $inputMode) {
                         $inputMode = 'numeric';
@@ -152,7 +152,7 @@ class Text extends BaseComponent
         $elMarkup = $this->buildInputGroup($data, $form);
 
         $html = $this->buildElementMarkup($elMarkup, $data, $form);
-    
+
         $html = apply_filters_deprecated(
             'fluentform_rendering_field_html_' . $elementName,
             [

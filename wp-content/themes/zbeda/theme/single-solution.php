@@ -16,7 +16,7 @@ while ( have_posts() ) :
 
 			<!-- Solution Header -->
 			<div class="bg-primary border-b border-gray-200">
-				<div class="container mx-auto px-4 py-8">
+				<div class="container mx-auto px-4 py-3">
 					<div <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 						<!-- Breadcrumbs -->
 						<nav class="text-sm text-secondary mb-2" aria-label="Breadcrumb">
@@ -89,7 +89,7 @@ while ( have_posts() ) :
 				<div class="bg-gray-100 py-16">
 					<div class="container mx-auto px-4">
 						<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-							<?php esc_html_e( 'השותפים שלנו – המותגים שמניעים את הענף', 'zbeda' ); ?>
+							<?php esc_html_e( 'המותגים המובילים שאנו מייצגים', 'zbeda' ); ?>
 						</h2>
 					</div>
 					<?php get_template_part( 'template-parts/components/grid-brands' ); ?>

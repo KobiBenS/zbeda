@@ -18018,7 +18018,7 @@ msgstr "<a href=\"%s\">אנא עדכן את וורדפרס</a>."
 #: wp-admin/themes.php:996 wp-admin/themes.php:1063
 #: wp-admin/update-core.php:688
 msgid "<a href=\"%1$s\">Please update WordPress</a>, and then <a href=\"%2$s\">learn more about updating PHP</a>."
-msgstr "<a href=\"%1$s\">אנא עדכן את וורדפרס</a>, ואז <a href=\"%2$s\">למד עוד על עדכון PHP</a>."
+msgstr "<a href=\"%1$s\">אנא עדכן את וורדפרס</a>, ואז <a href=\"%2$s\">לפרטים נוספים על עדכון PHP</a>."
 
 #. translators: %s: customize_messenger_channel
 #: wp-includes/class-wp-customize-manager.php:1920

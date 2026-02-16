@@ -377,6 +377,83 @@
             "allow_in_bindings": 0
         },
         {
+            "key": "field_about_contact_tab",
+            "label": "צור קשר",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_about_map_embed",
+            "label": "קישור למפת Google (embed)",
+            "name": "map_embed",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "קישור להטמעת מפת Google Maps. אם ריק - יוצג מיקום ברירת מחדל.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_about_contact_number",
+            "label": "טלפון",
+            "name": "contact_number",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "972-3-761-0001",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_about_contact_us",
+            "label": "אימייל",
+            "name": "contact_us",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "main@zbeda.com",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_about_values_tab",
             "label": "ערכים",
             "name": "",

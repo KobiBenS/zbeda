@@ -15,7 +15,7 @@ get_header();
 
 			<!-- Page Header -->
 			<div class="bg-primary border-b border-gray-200">
-				<div class="container mx-auto px-4 py-8">
+				<div class="container mx-auto px-4 py-3">
 					<div <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 						<!-- Breadcrumbs -->
 						<nav class="text-sm text-secondary mb-2" aria-label="Breadcrumb">
@@ -71,7 +71,7 @@ get_header();
 
 										<!-- Read More -->
 										<span class="text-secondary text-md font-semibold">
-											<?php esc_html_e( 'למד עוד', 'zbeda' ); ?>
+											<?php esc_html_e( 'לפרטים נוספים', 'zbeda' ); ?>
 										</span>
 									</div>
 								</div>

@@ -20,7 +20,7 @@ while ( have_posts() ) :
 
 			<!-- Brand Header -->
 			<div class="bg-primary border-b border-gray-200">
-				<div class="container mx-auto px-4 py-8">
+				<div class="container mx-auto px-4 py-3">
 					<div class="flex items-center justify-between" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 
 						<!-- Right side: Breadcrumbs & Brand Name -->
@@ -135,7 +135,7 @@ while ( have_posts() ) :
 										<div class="p-4 text-center" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 											<h3 class="text-secondary font-bold mb-2 text-xl lg:text-2xl"><?php echo esc_html( get_the_title( $solution_id ) ); ?></h3>
 											<span class="text-secondary text-md font-semibold">
-												<?php esc_html_e( 'למד עוד', 'zbeda' ); ?>
+												<?php esc_html_e( 'לפרטים נוספים', 'zbeda' ); ?>
 											</span>
 										</div>
 									</div>
@@ -170,7 +170,7 @@ while ( have_posts() ) :
 			<div class="bg-gray-100 py-16">
 				<div class="container mx-auto px-4">
 					<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-						<?php esc_html_e( 'השותפים שלנו – המותגים שמניעים את הענף', 'zbeda' ); ?>
+						<?php esc_html_e( 'המותגים המובילים שאנו מייצגים', 'zbeda' ); ?>
 					</h2>
 				</div>
 				<?php get_template_part( 'template-parts/components/grid-brands' ); ?>

@@ -34,7 +34,7 @@ if ( ! function_exists( 'zbeda_is_light_color' ) ) {
 
 // Get contact info from ACF fields or use defaults
 $contact_number = get_field( 'contact_number' );
-$contact_email  = get_field( 'contact_email' );
+$contact_email  = get_field( 'contact_us' );
 
 // Fallback to defaults if not set
 if ( empty( $contact_number ) ) {

@@ -230,7 +230,7 @@ Displays a grid of solution posts associated with a subsidiary. Uses responsive 
 - **Background**: `bg-primary`
 - **Image**: Square aspect ratio (`aspect-square`), hover scale effect
 - **Title**: `text-secondary font-bold mb-2 text-xl lg:text-2xl` (responsive sizing)
-- **Read More**: `text-secondary text-md font-semibold` with "למד עוד" text
+- **Read More**: `text-secondary text-md font-semibold` with "לפרטים נוספים" text
 - **Padding**: `p-4` for content section
 - **Hover**: Image scales on hover (`group-hover:scale-105`)
 

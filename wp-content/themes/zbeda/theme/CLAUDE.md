@@ -392,3 +392,37 @@ endif;
 ```
 
 **Rule:** Use `get_template_part()` for reusable sections, not inline includes.
+
+## Contact Section Component - ACF Fields
+
+**Template:** `template-parts/components/contact-section.php`
+
+**Used in:** template-about.php, template-home.php, single-subsidiary.php
+
+**ACF Fields Required** (from current post context):
+- `map_embed` (url) - Google Maps embed URL. Fallback: default Zbeda location
+- `contact_number` (text) - Phone number. Fallback: 972-3-761-0001
+- `contact_us` (email/text) - Email address. Fallback: main@zbeda.com
+
+**Where fields must be defined:**
+- **About page:** `group_about_page_fields.json` - Contact tab
+- **Home page:** `group_home_page_fields.json` - Contact tab
+- **Subsidiary:** `group_6948e43603f15.json` - הגדרות חברה tab
+
+**Rule:** When adding a reusable component that uses `get_field()`, ensure the ACF field is defined in the JSON for EVERY post type/page template that includes that component.
+
+## ACF Field Audit Rule
+
+**Before using `get_field('field_name')` in code:**
+1. Identify which template(s) use that code
+2. Determine the post context (page template, post type)
+3. Verify the field exists in the corresponding ACF JSON file
+4. If missing: Add the field to the appropriate `acf-json/group_*.json` file
+
+**ACF JSON files and their locations:**
+- `group_about_page_fields.json` → page_template: template-about.php
+- `group_home_page_fields.json` → page_template: template-home.php
+- `group_6948e43603f15.json` → post_type: subsidiary
+- `group_solution_fields.json` → post_type: solution
+- `group_6949348d5174b.json` → post_type: brand
+- `group_team_fields.json` → post_type: team

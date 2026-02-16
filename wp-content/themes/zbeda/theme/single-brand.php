@@ -62,7 +62,7 @@ while ( have_posts() ) :
 
 			<!-- Brand Header -->
 			<div class="<?php echo $primary_color ? 'brand-custom-primary' : 'bg-primary'; ?> border-b border-gray-200">
-				<div class="container mx-auto px-4 py-8">
+				<div class="container mx-auto px-4 py-3">
 					<div class="flex items-center justify-between" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 
 						<!-- Right side: Breadcrumbs & Brand Name -->

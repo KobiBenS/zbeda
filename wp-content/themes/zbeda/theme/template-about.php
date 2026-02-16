@@ -19,7 +19,7 @@ get_header();
 
 			<!-- Page Header -->
 			<div class="bg-primary border-b border-gray-200">
-				<div class="container mx-auto px-4 py-8">
+				<div class="container mx-auto px-4 py-3">
 					<div <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 						<!-- Breadcrumbs -->
 						<nav class="text-sm text-secondary mb-2" aria-label="Breadcrumb">
@@ -248,7 +248,76 @@ get_header();
 					</div>
 				</div>
 			<?php endif; ?>
+<!-- Values/Mission Section -->
+			<?php
+			// Get values from ACF fields with fallbacks
+			$values_section_title = get_field( 'values_section_title' ) ?: 'הערכים שלנו';
+			$value_1_title = get_field( 'value_1_title' ) ?: 'מקצועיות';
+			$value_1_text  = get_field( 'value_1_text' ) ?: 'צוות מקצועי ומנוסה המתמחה בפתרונות איכותיים';
+			$value_2_title = get_field( 'value_2_title' ) ?: 'חדשנות';
+			$value_2_text  = get_field( 'value_2_text' ) ?: 'פתרונות חדשניים המותאמים לצרכי השוק המודרני';
+			$value_3_title = get_field( 'value_3_title' ) ?: 'שירות';
+			$value_3_text  = get_field( 'value_3_text' ) ?: 'שירות אישי ומסור ללקוחותינו בכל שלב';
+			?>
+			<div class="bg-secondary text-white py-16">
+				<div class="container mx-auto px-4" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+					<!-- Section Title -->
+					<div class="text-center mb-12">
+						<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+							<?php echo esc_html( $values_section_title ); ?>
+						</h2>
+						<div class="w-24 h-1 bg-primary mx-auto"></div>
+					</div>
 
+					<!-- Values Row -->
+					<div class="flex flex-col md:flex-row gap-8 md:gap-12 items-stretch">
+						<!-- Value 1 -->
+						<div class="text-center flex-1">
+							<div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+							</div>
+							<h3 class="text-xl font-bold mb-2 text-primary">
+								<?php echo esc_html( $value_1_title ); ?>
+							</h3>
+							<p class="text-gray-300">
+								<?php echo esc_html( $value_1_text ); ?>
+							</p>
+						</div>
+
+						<!-- Value 2 -->
+						<div class="text-center flex-1">
+							<div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+								</svg>
+							</div>
+							<h3 class="text-xl font-bold mb-2 text-primary">
+								<?php echo esc_html( $value_2_title ); ?>
+							</h3>
+							<p class="text-gray-300">
+								<?php echo esc_html( $value_2_text ); ?>
+							</p>
+						</div>
+
+						<!-- Value 3 -->
+						<div class="text-center flex-1">
+							<div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+								</svg>
+							</div>
+							<h3 class="text-xl font-bold mb-2 text-primary">
+								<?php echo esc_html( $value_3_title ); ?>
+							</h3>
+							<p class="text-gray-300">
+								<?php echo esc_html( $value_3_text ); ?>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- Team Section -->
 			<?php
 			$team_members = new WP_Query(
@@ -282,7 +351,7 @@ get_header();
 
 								// Fallback to defaults if empty
 								if ( empty( $contact_email ) ) {
-									$contact_email = 'main@zbeda.com';
+									$contact_email = 'mazkirut@zbeda.com';
 								}
 								if ( empty( $contact_phone ) ) {
 									$contact_phone = '037610001';
@@ -358,77 +427,6 @@ get_header();
 				wp_reset_postdata();
 			endif;
 			?>
-
-			<!-- Values/Mission Section -->
-			<?php
-			// Get values from ACF fields with fallbacks
-			$values_section_title = get_field( 'values_section_title' ) ?: 'הערכים שלנו';
-			$value_1_title = get_field( 'value_1_title' ) ?: 'מקצועיות';
-			$value_1_text  = get_field( 'value_1_text' ) ?: 'צוות מקצועי ומנוסה המתמחה בפתרונות איכותיים';
-			$value_2_title = get_field( 'value_2_title' ) ?: 'חדשנות';
-			$value_2_text  = get_field( 'value_2_text' ) ?: 'פתרונות חדשניים המותאמים לצרכי השוק המודרני';
-			$value_3_title = get_field( 'value_3_title' ) ?: 'שירות';
-			$value_3_text  = get_field( 'value_3_text' ) ?: 'שירות אישי ומסור ללקוחותינו בכל שלב';
-			?>
-			<div class="bg-secondary text-white py-16">
-				<div class="container mx-auto px-4" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-					<!-- Section Title -->
-					<div class="text-center mb-12">
-						<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
-							<?php echo esc_html( $values_section_title ); ?>
-						</h2>
-						<div class="w-24 h-1 bg-primary mx-auto"></div>
-					</div>
-
-					<!-- Values Row -->
-					<div class="flex flex-col md:flex-row gap-8 md:gap-12 items-stretch">
-						<!-- Value 1 -->
-						<div class="text-center flex-1">
-							<div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-								</svg>
-							</div>
-							<h3 class="text-xl font-bold mb-2 text-primary">
-								<?php echo esc_html( $value_1_title ); ?>
-							</h3>
-							<p class="text-gray-300">
-								<?php echo esc_html( $value_1_text ); ?>
-							</p>
-						</div>
-
-						<!-- Value 2 -->
-						<div class="text-center flex-1">
-							<div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-								</svg>
-							</div>
-							<h3 class="text-xl font-bold mb-2 text-primary">
-								<?php echo esc_html( $value_2_title ); ?>
-							</h3>
-							<p class="text-gray-300">
-								<?php echo esc_html( $value_2_text ); ?>
-							</p>
-						</div>
-
-						<!-- Value 3 -->
-						<div class="text-center flex-1">
-							<div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-								</svg>
-							</div>
-							<h3 class="text-xl font-bold mb-2 text-primary">
-								<?php echo esc_html( $value_3_title ); ?>
-							</h3>
-							<p class="text-gray-300">
-								<?php echo esc_html( $value_3_text ); ?>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<!-- Contact Section -->
 			<?php get_template_part( 'template-parts/components/contact-section' ); ?>
