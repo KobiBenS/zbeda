@@ -170,7 +170,7 @@ while ( have_posts() ) :
 			<div class="bg-gray-100 py-16">
 				<div class="container mx-auto px-4">
 					<h2 class="text-3xl md:text-4xl font-bold text-center text-secondary mb-12" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-						<?php esc_html_e( 'המותגים המובילים שאנו מייצגים', 'zbeda' ); ?>
+						<?php esc_html_e( 'השותפים שלנו – המותגים שמניעים את הענף', 'zbeda' ); ?>
 					</h2>
 				</div>
 				<?php get_template_part( 'template-parts/components/grid-brands' ); ?>
