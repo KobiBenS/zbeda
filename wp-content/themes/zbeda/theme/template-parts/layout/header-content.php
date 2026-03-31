@@ -128,7 +128,7 @@
 	width: 100%;
 	height: 0.5rem;
 	background: transparent;
-	z-index: 51;
+	z-index: 51; 
 }
 
 /* Submenu styles */
