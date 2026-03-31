@@ -28,7 +28,7 @@ get_header();
 			?>
 
 			<!-- Hero Section -->
-			<div class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-900">
+			<div class="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
 				<!-- Background -->
 				<?php if ( $hero_bg_type === 'video' && $hero_bg_video ) : ?>
 					<video

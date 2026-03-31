@@ -9,7 +9,7 @@
 
 ?>
 
-<header id="masthead" class="bg-gray-900 border-b-4 border-amber-400">
+<header id="masthead" class="sticky top-0 z-50 bg-gray-900 border-b-4 border-amber-400">
 	<div class="container mx-auto px-4">
 		<div class="flex flex-row-reverse justify-between items-center h-30 md:flex-row md:justify-start md:gap-4" dir="rtl">
 
