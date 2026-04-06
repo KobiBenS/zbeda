@@ -52,14 +52,14 @@ get_header();
 						?>
 
 						<article id="post-<?php the_ID(); ?>" <?php post_class( 'group' ); ?>>
-							<div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+							<div class="bg-white rounded-lg border border-gray-300 overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
 
 								<!-- Logo -->
 								<?php
 								$logo_url =  get_the_post_thumbnail_url( get_the_ID(), 'medium' );
 								if ( $logo_url ) :
 									?>
-									<div class="relative overflow-hidden bg-gray-50 flex items-center justify-center aspect-[16/9]">
+									<div class="relative overflow-hidden  flex items-center justify-center aspect-[16/9]">
 										<a href="<?php the_permalink(); ?>" class="block h-full w-full">
 											<img
 												src="<?php echo esc_url( $logo_url ); ?>"
