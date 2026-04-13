@@ -31,18 +31,18 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 			<div class="swiper-wrapper">
 				<?php
 				// Define slide order - MUST MATCH mobile grid order: Top Right, Top Left, Bottom Left, Bottom Right
-				// Colors match desktop grid: RTL has mixed colors, LTR all secondary
+				// Colors match desktop grid (same pattern RTL and LTR)
 				$slides = array();
 				
-				// Order 1: Top Right (same for both RTL and LTR)
+				// Order 1: Top Right
 				if ( $grid_top_right ) {
-					$slides[] = array( 
-						'content' => $grid_top_right, 
-						'image' => '', 
+					$slides[] = array(
+						'content' => $grid_top_right,
+						'image' => '',
 						'has_primary_heading' => false,
-						'bg_class' => is_rtl() ? 'bg-white' : 'bg-secondary',
-						'text_class' => is_rtl() ? 'text-secondary' : 'text-white',
-						'prose_class' => is_rtl() ? 'prose' : 'prose prose-invert'
+						'bg_class' => 'bg-white',
+						'text_class' => 'text-secondary',
+						'prose_class' => 'prose',
 					);
 				}
 				
@@ -58,15 +58,15 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 					);
 				}
 				
-				// Order 3: Bottom Left (same for both RTL and LTR)
+				// Order 3: Bottom Left
 				if ( $grid_bottom_left ) {
-					$slides[] = array( 
-						'content' => $grid_bottom_left, 
-						'image' => '', 
+					$slides[] = array(
+						'content' => $grid_bottom_left,
+						'image' => '',
 						'has_primary_heading' => false,
-						'bg_class' => is_rtl() ? 'bg-white' : 'bg-secondary',
-						'text_class' => is_rtl() ? 'text-secondary' : 'text-white',
-						'prose_class' => is_rtl() ? 'prose' : 'prose prose-invert'
+						'bg_class' => 'bg-white',
+						'text_class' => 'text-secondary',
+						'prose_class' => 'prose',
 					);
 				}
 				
@@ -180,20 +180,20 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 				</div>
 
 			<?php else : ?>
-				<!-- LTR Layout -->
-				<!-- Top Right (appears on right in LTR, order 1 on mobile) -->
-				<div class="order-1 md:order-none bg-secondary text-white p-8 relative overflow-hidden">
+				<!-- LTR Layout — same bg/text/prose pattern as RTL per content block -->
+				<!-- Top Right (order 1 on mobile) -->
+				<div class="order-1 md:order-none bg-white text-secondary p-8 relative overflow-hidden md:p-12 xl:p-24">
 					<div class="relative z-10">
 						<?php if ( $grid_top_right ) : ?>
-							<div class="prose prose-invert max-w-none">
+							<div class="prose max-w-none">
 								<?php echo wp_kses_post( $grid_top_right ); ?>
 							</div>
 						<?php endif; ?>
 					</div>
 				</div>
 
-				<!-- Top Left (appears on left in LTR, order 2 on mobile) -->
-				<div class="order-2 md:order-none bg-secondary text-white p-8 relative overflow-hidden">
+				<!-- Top Left (order 2 on mobile) -->
+				<div class="order-2 md:order-none bg-secondary text-white p-8 relative overflow-hidden md:p-12 xl:p-24">
 					<?php if ( $grid_top_left_image ) : ?>
 						<img
 							src="<?php echo esc_url( $grid_top_left_image ); ?>"
@@ -210,19 +210,19 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 					</div>
 				</div>
 
-				<!-- Bottom Left (appears on left in LTR, order 3 on mobile) -->
-				<div class="order-3 md:order-none bg-secondary text-white p-8 relative overflow-hidden">
+				<!-- Bottom Left (order 3 on mobile) -->
+				<div class="order-3 md:order-none bg-white text-secondary p-8 relative overflow-hidden md:p-12 xl:p-24">
 					<div class="relative z-10">
 						<?php if ( $grid_bottom_left ) : ?>
-							<div class="prose prose-invert max-w-none">
+							<div class="prose max-w-none">
 								<?php echo wp_kses_post( $grid_bottom_left ); ?>
 							</div>
 						<?php endif; ?>
 					</div>
 				</div>
 
-				<!-- Bottom Right (appears on right in LTR, order 4 on mobile) -->
-				<div class="order-4 md:order-none bg-secondary text-white p-8 relative overflow-hidden">
+				<!-- Bottom Right (order 4 on mobile) -->
+				<div class="order-4 md:order-none bg-secondary text-white p-8 relative overflow-hidden md:p-12 xl:p-24">
 					<?php if ( $grid_bottom_right_image ) : ?>
 						<img
 							src="<?php echo esc_url( $grid_bottom_right_image ); ?>"

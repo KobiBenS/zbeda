@@ -9,16 +9,4 @@
  * https://esbuild.github.io/
  */
 
-// Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function () {
-	const menuToggle = document.getElementById('mobile-menu-toggle');
-	const mobileMenu = document.getElementById('mobile-menu');
-
-	if (menuToggle && mobileMenu) {
-		menuToggle.addEventListener('click', function () {
-			const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-			menuToggle.setAttribute('aria-expanded', !isExpanded);
-			mobileMenu.classList.toggle('hidden');
-		});
-	}
-});
+// Mobile menu toggle lives in template-parts/layout/header-content.php only (avoids duplicate listeners).
