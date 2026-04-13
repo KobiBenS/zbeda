@@ -210,17 +210,6 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 					</div>
 				</div>
 
-				<!-- Bottom Left (order 3 on mobile) -->
-				<div class="order-3 md:order-none bg-white text-secondary p-8 relative overflow-hidden md:p-12 xl:p-24">
-					<div class="relative z-10">
-						<?php if ( $grid_bottom_left ) : ?>
-							<div class="prose max-w-none">
-								<?php echo wp_kses_post( $grid_bottom_left ); ?>
-							</div>
-						<?php endif; ?>
-					</div>
-				</div>
-
 				<!-- Bottom Right (order 4 on mobile) -->
 				<div class="order-4 md:order-none bg-secondary text-white p-8 relative overflow-hidden md:p-12 xl:p-24">
 					<?php if ( $grid_bottom_right_image ) : ?>
@@ -238,6 +227,18 @@ if ( $grid_top_left || $grid_top_right || $grid_bottom_left || $grid_bottom_righ
 						<?php endif; ?>
 					</div>
 				</div>
+
+								<!-- Bottom Left (order 3 on mobile) -->
+				<div class="order-3 md:order-none bg-white text-secondary p-8 relative overflow-hidden md:p-12 xl:p-24">
+					<div class="relative z-10">
+						<?php if ( $grid_bottom_left ) : ?>
+							<div class="prose max-w-none">
+								<?php echo wp_kses_post( $grid_bottom_left ); ?>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+
 			<?php endif; ?>
 		</div>
 	</div>
