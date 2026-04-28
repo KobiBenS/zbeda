@@ -22,7 +22,7 @@ while ( have_posts() ) :
 			<div class="bg-primary border-b border-gray-200">
 				<div class="container mx-auto px-4 py-3">
 					<div <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-						<nav class="text-sm text-secondary mb-2" aria-label="Breadcrumb">
+						<nav class="text-sm text-secondary" aria-label="Breadcrumb">
 							<ol class="flex items-center gap-2">
 								<li>
 									<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="hover:text-amber-500 transition-colors" aria-label="<?php esc_attr_e( 'בית', 'zbeda' ); ?>">
@@ -43,13 +43,18 @@ while ( have_posts() ) :
 								</li>
 							</ol>
 						</nav>
+					</div>
+				</div>
+			</div>
 
-						<h1 class="text-3xl md:text-4xl font-bold text-secondary">
+			<div class="container mx-auto px-4 pt-12 pb-12">
+				<div class="flex flex-col md:flex-row gap-8 items-start">
+					<div class="<?php echo $job_image ? 'md:w-3/5' : 'w-full'; ?>" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+						<h1 class="text-3xl md:text-4xl font-bold text-secondary <?php echo ( $job_sku || $job_location ) ? 'mb-4' : 'mb-8'; ?>">
 							<?php the_title(); ?>
 						</h1>
-
 						<?php if ( $job_sku || $job_location ) : ?>
-							<ul class="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-secondary font-medium" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
+							<ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-secondary font-medium mb-8">
 								<?php if ( $job_sku ) : ?>
 									<li>
 										<span class="opacity-80"><?php esc_html_e( 'מק״ט:', 'zbeda' ); ?></span>
@@ -64,19 +69,12 @@ while ( have_posts() ) :
 								<?php endif; ?>
 							</ul>
 						<?php endif; ?>
-					</div>
-				</div>
-			</div>
-
-			<div class="container mx-auto px-4 pt-24 py-12">
-				<div class="flex flex-col md:flex-row gap-8 items-center">
-					<div class="<?php echo $job_image ? 'md:w-3/5' : 'w-full'; ?>" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
 						<div class="prose prose-lg max-w-none">
 							<?php the_content(); ?>
 						</div>
 					</div>
 					<?php if ( $job_image ) : ?>
-						<div class="md:w-2/5 flex-shrink-0">
+						<div class="md:w-2/5 flex-shrink-0 w-full">
 							<img src="<?php echo esc_url( $job_image['url'] ); ?>" alt="<?php echo esc_attr( $job_image['alt'] ); ?>" class="w-full h-auto rounded-lg shadow-lg" loading="lazy" decoding="async" />
 						</div>
 					<?php endif; ?>
@@ -86,11 +84,13 @@ while ( have_posts() ) :
 			<?php if ( is_string( $form_short ) && $form_short !== '' ) : ?>
 				<div class="bg-gray-100 border-t border-gray-200 py-16">
 					<div class="container mx-auto px-4 max-w-3xl" <?php echo is_rtl() ? 'dir="rtl"' : ''; ?>>
-						<h2 class="text-2xl md:text-3xl font-bold text-secondary mb-8 text-center">
-							<?php esc_html_e( 'שלחו קורות חיים', 'zbeda' ); ?>
-						</h2>
-						<div class="job-application-form prose max-w-none">
-							<?php echo do_shortcode( $form_short ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- shortcode output from trusted shortcodes ?>
+						<div class="bg-white border border-gray-200 rounded-lg px-6 py-10 md:px-10 md:py-12 shadow-sm">
+							<h2 class="text-2xl md:text-3xl font-bold text-secondary mb-8 text-center">
+								<?php esc_html_e( 'שלחו קורות חיים', 'zbeda' ); ?>
+							</h2>
+							<div class="job-application-form prose max-w-none">
+								<?php echo do_shortcode( $form_short ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- shortcode output from trusted shortcodes ?>
+							</div>
 						</div>
 					</div>
 				</div>
