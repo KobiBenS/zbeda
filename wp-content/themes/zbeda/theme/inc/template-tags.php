@@ -304,3 +304,56 @@ if ( ! function_exists( 'zbeda_content_class' ) ) :
 		echo 'class="' . esc_attr( implode( ' ', $combined_classes ) ) . '"';
 	}
 endif;
+
+if ( ! function_exists( 'zbeda_get_job_display_image' ) ) :
+	/**
+	 * Featured image for a job post, falling back to Theme Options default image.
+	 *
+	 * @param int|null $post_id Post ID, or null for current post in the loop.
+	 * @param string   $size    Image size slug.
+	 * @return array|null With keys url and alt, or null if no image.
+	 */
+	function zbeda_get_job_display_image( $post_id = null, $size = 'large' ) {
+		if ( null === $post_id ) {
+			$post_id = get_the_ID();
+		}
+
+		if ( has_post_thumbnail( $post_id ) ) {
+			$thumb_id = get_post_thumbnail_id( $post_id );
+			$src      = wp_get_attachment_image_src( $thumb_id, $size );
+			if ( $src ) {
+				$alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true );
+				if ( '' === $alt ) {
+					$alt = get_the_title( $post_id );
+				}
+				return array(
+					'url' => $src[0],
+					'alt' => $alt,
+				);
+			}
+		}
+
+		if ( function_exists( 'get_field' ) ) {
+			$default = get_field( 'jobs_default_featured_image', 'option' );
+			if ( is_array( $default ) && ! empty( $default['ID'] ) ) {
+				$thumb_id = (int) $default['ID'];
+				$src      = wp_get_attachment_image_src( $thumb_id, $size );
+				if ( $src ) {
+					$alt = isset( $default['alt'] ) ? $default['alt'] : '';
+					if ( '' === $alt ) {
+						$alt = get_post_meta( $thumb_id, '_wp_attachment_image_alt', true );
+					}
+					if ( '' === $alt ) {
+						$alt = get_the_title( $post_id );
+					}
+					return array(
+						'url' => $src[0],
+						'alt' => $alt,
+					);
+				}
+			}
+		}
+
+		return null;
+	}
+endif;

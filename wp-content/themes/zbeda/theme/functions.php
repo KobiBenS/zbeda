@@ -250,3 +250,23 @@ require get_template_directory() . '/inc/template-functions.php';
  * Custom post types.
  */
 require get_template_directory() . '/inc/post-types.php';
+
+/**
+ * Register ACF options page for site-wide theme settings.
+ */
+function zbeda_acf_register_options_page() {
+	if ( ! function_exists( 'acf_add_options_page' ) ) {
+		return;
+	}
+
+	acf_add_options_page(
+		array(
+			'page_title' => __( 'הגדרת דרושים', 'zbeda' ),
+			'menu_title' => __( 'הגדרת דרושים', 'zbeda' ),
+			'menu_slug'  => 'zbeda-theme-options',
+			'capability' => 'manage_options',
+			'redirect'   => false,
+		)
+	);
+}
+add_action( 'acf/init', 'zbeda_acf_register_options_page' );
